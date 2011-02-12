@@ -1,0 +1,6 @@
+<headnode user="jmueller" ip="141.76.90.33">
+	<jabber jid="clusterbot@jabber.org" password="123456">
+		<whitelist jid="clusterbot@jabber.org"/>
+		<whitelist jid="gilgamesh@jabber.ccc.de"/>
+	</jabber>
+</headnode>

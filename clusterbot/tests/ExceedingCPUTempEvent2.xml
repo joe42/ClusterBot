@@ -1,0 +1,11 @@
+<eventmodule>
+  <event name="ExceedingCPUTempEvent2" is="CachedEvent">
+    <description desc="An exceedingly obvious testing stub."/>
+    <param name="x" default="0" type="int"/>
+    <command cmd="sensors">
+    	<regex name="cputemp" type="int" regex="(\d+).?.?.?.?C"/>
+    	<test test="cputemp > 90"/>
+        <message text="CPU temperature hit critical limit: $cputemp\n"/>
+    </command>
+  </event>
+</eventmodule>

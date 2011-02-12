@@ -1,0 +1,46 @@
+.. clusterbot documentation master file, created by
+   sphinx-quickstart on Sun Feb  6 13:22:45 2011.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to clusterbot's documentation!
+======================================
+
+
+Introduction
+---------------------
+
+ClusterBot is a Python application written to create XMPP based services without the need to program and 
+provides means to manage an ssh server. It builds on `JabberBot <http://thp.io/2007/python-jabberbot/>`_, 
+which in turn builds on  `xmpppy <http://thp.io/2007/python-jabberbot/>`_. The License used is `GPLv3 <http://www.gnu.org/licenses/>.
+
+Features
+---------------------
+
+* Add commands via XML files
+* Add events via XML files
+* Events are polled automatically and the user is informed if they appear
+* Subscribe/Unsubscribe from events
+
+
+Further development
+------------------------------------
+
+
+Contents
+---------------------
+
+.. toctree::
+   :maxdepth: 2
+   
+   user
+   setup
+   develop 
+
+Indices and tables:
+---------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+

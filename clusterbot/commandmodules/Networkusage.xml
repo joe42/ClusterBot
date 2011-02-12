@@ -1,0 +1,8 @@
+<commandmodule>
+  <command name="networkusage">
+    <description desc="Displays an overview of the network usage."/>
+    <cmd cmd="pdsh -a &quot;ifstat -z 1/1 1 &quot;|dshbak -c;">
+        <message text="$result"/>
+    </cmd>
+  </command>
+</commandmodule>   

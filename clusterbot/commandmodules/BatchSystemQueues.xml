@@ -1,0 +1,8 @@
+<commandmodule>
+  <command name="batchqueues">
+    <description desc="Displays an overview of the Batch SystemQueues."/>
+    <cmd cmd="/usr/local/maui/bin/showq">
+        <message text="$result"/>
+    </cmd>
+  </command>
+</commandmodule>   

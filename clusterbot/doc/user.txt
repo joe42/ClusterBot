@@ -1,0 +1,47 @@
+Users documentation
+======================================
+
+First Steps
+---------------------
+
+Following these steps sets up a client for interacting with the clusterbot service. 
+
+ 1. Downloading an Instant Messenger which supports XMPP (Extensible Messaging and Presence Protocol) formerly known as jabber.
+ 2. Registering an account.
+ 3. Askig the administrator of the clusterbot service to put the accounts jabber id on the whitelist. 
+This allows for adding the clusterbot service like any other contact within the Instant Messenger.
+ 4. Asking the administrator for the jabber id, under which the clusterbot service is registered.
+ 5. Adding the supplied jabber id as a contact to the Instant Messenger.
+
+
+Commands
+---------------------
+
+After starting a conversation like with any other contact within the respective Instant Messenger one can type in the following commands. 
+After typing a command it must be sent, one at a time.
+
+*help*	Returns an overview of all available commands.
+*help COMMAND_NAME* Returns further information about the command with the name COMMAND_NAME
+*cat* Works like cat on Linux.
+*echo* Repeats everything like a parrot.
+*get* Gets a few system parameters. But at the moment only get temp is allowed to view system temperatures.
+*getjid* Tells your jabber id.
+*importnewevents* Loads new event modules from the package clusterbot.eventmodules
+*listevents* Lists events to subscribe to.
+*ls* Works like ls on Linux.
+*opensession* Execute any commands like in a shell. 
+*serverinfo* Serves information about the clusterservice.
+*subscribe* Subscribe to an event.
+*unsubscribe* Unsubscribe from an event.
+*whoami* Tells your username.
+*listcommands*: Lists plugged in commands.
+Advanced Usage:
+-------------------------------
+
+Subscribe to an event
++++++++++++++++++++++++++
+
+Unsubscribe from an event
+++++++++++++++++++++++++++++
+
+

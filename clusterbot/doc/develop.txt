@@ -1,0 +1,155 @@
+Developers documentation
+======================================
+
+Extensions
+---------------------
+
+There are two distinct kind of extensions. First of all there are commands and secondly there are events. Both extensions can be described by XML files.
+These files can then be converted to Python modules by using the XMLEventParser and XMLCommandParser, respectively. 
+Afterwards they can be loaded during runtime, by calling either *importnewevents* or *importnewcommands*.
+
+.. note::
+
+	To make things short, the notion "TAG-ATTRIBUTE" is used as an abbreviation for 
+	"the value of the attribute with the name ATTRIBUTE belonging to the tag with the name TAG".
+
+Command Extensions
++++++++++++++++++++
+
+Command Extensions allow for additional commands which can be issued through the XMPP client.
+
+The first step to create a command extension is to write a XML file like the following:
+.. highlight::xml
+
+**batchqueues.xml**::
+
+	<commandmodule>
+	  <command name="batchqueues">
+	    <description desc="Displays an overview of the Batch SystemQueues."/>
+	    <cmd cmd="/usr/local/maui/bin/showq">
+	        <message text="$result"/>
+	    </cmd>
+	  </command>
+	</commandmodule>   
+
+The first important value is the command-name, which on the one hand side will be used as the resulting Python module's name and
+on the other hand side will be the command's name, which can be used to invoke the command via the XMPP client. 
+Secondly there is the description-desc, which states the description, which can be viewed by the client command *listcommands*. 
+Thirdly, there is the cmd-cmd, which specifies the shell command to be executed on the headnode by invoking *command-name* on the client.
+Last but not least, the message-text attribute declares the string which is send as a reply to the client invoking the command. 
+Words with a preceding $-Sign like the *$result* will be replaced. *$result* is a special variable, which is replaced by the output of the 
+executed shell command.
+
+.. note::
+
+	Commands results are cached for about one minute.
+
+After storing the XML file as */path/file.xml* the XMLCommandParser module will be used to convert the XML file to the actual Python module.
+Therefore one needs to navigate to the parent folder of the package clusterbot. From there a Python console can be invoked.
+The following commands need to be issued in the Python  shell:
+
+.. code-block:: python
+
+	from clusterbot.commands.XMLCommandParser import *
+	createCommandFromFile("/path/file.xml")
+
+Alternatively a python script could be created to automate the task:
+ 
+.. code-block:: python
+
+	#!/bin/python
+	import sys
+	from clusterbot.commands.XMLCommandParser import *
+	createCommandFromFile(sys.argv[1])
+	
+This could be called with:
+
+:program:`./scriptname.py` *"/path/file.xml"*
+	
+Event Extensions
++++++++++++++++++
+
+Event extensions allow for new event modules which can keep the client up-to-date about something, without requiring active requests.
+
+An event can be subscribed to by the *subscribe EVENTNAME* command through the XMPP client.
+
+The first step to create an event extension is to write a XML file like the following:
+.. highlight::xml
+
+**ExceedingCPUTempEvent2.xml**::
+
+	<eventmodule>
+	  <event name="ExceedingCPUTempEvent2" is="CachedEvent">
+	    <description desc="An exceedingly obvious testing stub."/>
+	    <param name="x" default="0" type="int"/>
+	    <command cmd="sensors">
+	    	<regex name="cputemp" type="int" regex="(\d+).?.?.?.?C"/>
+	    	<test test="cputemp > 90"/>
+	        <message text="CPU temperature hit critical limit: $cputemp\n"/>
+	    </command>
+	  </event>
+	</eventmodule>
+
+
+The first important value is the event-name, which on the one hand side will be used as the resulting Python module's name and
+on the other hand side will be the event's name, which can be used to for subscription via the XMPP client. 
+Secondly there is the description-desc, which states the description, which can be viewed by the client command *listevents*.
+The param Tag take following three attributes. The name attribute specifies a variable name, default states the variables default value and type 
+is the type of the variable, which is one of "int" or "str". There can be several param Tags, but param-name needs to be unique.
+command-cmd specifies the shell command to be executed on the headnode.
+Within the command tag there is an arbitrary number of regex and test Tags. regex-name again specifies a variable with the type specified in regex-type.
+regex-type can again have a value of "int" or "str". regex-regex is a regular expression. The first group, marked by parenthesis, determine the value of the
+variable. Therefore the regular expression is searched for in each line of the result of the executed command-cmd. regex-type needs to correspond to the matched group.
+Now the test-test is evaluated. Inside test-test, which is a boolean expression in Python syntax, the regex - variables as well as the param - variables can be used.     
+The message-text attribute declares the string which is send as a reply to the client invoking the command. The message is generated once for each line of the 
+resulting output of the executed command-cmd, if all regular expressions match the line and all tests return True. 
+Words with a preceding $-Sign like the *$result* will be replaced. *$result* is a special variable, which is replaced by the output of the 
+executed shell command. All regex and param - values can be used as well, but one needs to be sure of preceding their names by the $-Sign. 
+
+.. note::
+
+	Event messages are cached for about one minute.
+
+After storing the XML file as */path/file.xml* the XMLEventParser module will be used to convert the XML file to the actual Python module.
+Therefore one needs to navigate to the parent folder of the package clusterbot. From there a Python console can be invoked.
+The following commands need to be issued in the Python  shell:
+
+.. code-block:: python
+
+	from clusterbot.commands.XMLEventParser import *
+	createEventFromFile("/path/file.xml")
+
+Alternatively a python script could be created to automate the task:
+ 
+.. code-block:: python
+
+	#!/bin/python
+	import sys
+	from clusterbot.commands.XMLEventParser import *
+	createEventFromFile(sys.argv[1])
+	
+This could be called with:
+
+:program:`./scriptname.py` *"/path/file.xml"*
+
+
+Documentation
+------------------------
+
+To generate this documentation call: 
+
+	1. :program:`clusterbot/doc/generate_modules.py` :option:`-d` *clusterbot/doc* :option:`-f` :option:`-m` 5 clusterbot clusterbot/xmpp  clusterbot/jabberbot.py clusterbot/blowfish.py*
+	2. :program:`make` :option:`-f` *clusterbot/doc/Makefile html*
+
+
+Tests
+---------------------
+
+To run all tests call: 
+:program:`python` :option:`-m` *clusterbot.tests.main*
+
+
+.. include:: modules.txt
+
+
+

@@ -1,0 +1,6 @@
+	<headnode user="testaccount" ip="127.0.0.1">
+		<jabber jid="bot@jabber.org" password="123456">
+			<whitelist jid="yourself@jabber.ccc.de"/>
+			<whitelist jid="buddy@jabber.ccc.de"/>
+		</jabber>
+	</headnode>

@@ -1,0 +1,48 @@
+The :mod:`EventDrivenShellClusterBotTest` Module
+------------------------------------------------
+
+.. automodule:: clusterbot.tests.EventDrivenShellClusterBotTest
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`test` Module
+----------------------
+
+.. automodule:: clusterbot.tests.test
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`ShellClusterBotTest` Module
+-------------------------------------
+
+.. automodule:: clusterbot.tests.ShellClusterBotTest
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`XMLParserTest` Module
+-------------------------------
+
+.. automodule:: clusterbot.tests.XMLParserTest
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`MyXMLReaderTest` Module
+---------------------------------
+
+.. automodule:: clusterbot.tests.MyXMLReaderTest
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`stringtest` Module
+----------------------------
+
+.. automodule:: clusterbot.tests.stringtest
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

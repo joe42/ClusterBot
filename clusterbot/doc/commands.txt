@@ -1,0 +1,8 @@
+The :mod:`XMLCommandParser` Module
+----------------------------------
+
+.. automodule:: clusterbot.commands.XMLCommandParser
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

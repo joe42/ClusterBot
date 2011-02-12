@@ -1,0 +1,7 @@
+The :mod:`ssh` Module
+---------------------
+
+.. automodule:: clusterbot.ssh
+    :members:
+    :undoc-members:
+    :show-inheritance:

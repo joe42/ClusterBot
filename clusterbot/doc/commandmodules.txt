@@ -1,0 +1,24 @@
+The :mod:`batchqueues` Module
+-----------------------------
+
+.. automodule:: clusterbot.commandmodules.batchqueues
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`memoryusage` Module
+-----------------------------
+
+.. automodule:: clusterbot.commandmodules.memoryusage
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`networkusage` Module
+------------------------------
+
+.. automodule:: clusterbot.commandmodules.networkusage
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

@@ -1,0 +1,18 @@
+Modules:
+--------
+
+.. toctree::
+   :maxdepth: 5
+
+   ClusterBot
+   EventDrivenShellClusterBot
+   ShellClusterBot
+   commandmodules
+   commands
+   eventmodules
+   events
+   main
+   shell
+   ssh
+   tests
+   util

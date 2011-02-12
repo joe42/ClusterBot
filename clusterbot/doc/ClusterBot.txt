@@ -1,0 +1,7 @@
+The :mod:`ClusterBot` Module
+----------------------------
+
+.. automodule:: clusterbot.ClusterBot
+    :members:
+    :undoc-members:
+    :show-inheritance:

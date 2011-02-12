@@ -1,0 +1,7 @@
+The :mod:`EventDrivenShellClusterBot` Module
+--------------------------------------------
+
+.. automodule:: clusterbot.EventDrivenShellClusterBot
+    :members:
+    :undoc-members:
+    :show-inheritance:
