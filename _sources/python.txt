@@ -1,0 +1,315 @@
+Undocumented Python objects
+===========================
+clusterbot.ClusterBot
+---------------------
+Classes:
+ * ClusterBot -- missing methods:
+   - bottom_of_help_message
+   - broadcast
+   - build_message
+   - build_reply
+   - callback_message
+   - connect
+   - debug
+   - get_sender_username
+   - help
+   - idle_proc
+   - join_room
+   - log
+   - send
+   - send_message
+   - send_simple_reply
+   - send_tune
+   - serve_forever
+   - shutdown
+   - status_message_changed
+   - status_type_changed
+   - top_of_help_message
+   - unknown_command
+
+clusterbot.EventDrivenShellClusterBot
+-------------------------------------
+Classes:
+ * EventDrivenShellClusterBot -- missing methods:
+   - bottom_of_help_message
+   - build_message
+   - build_reply
+   - callback_message
+   - callback_presence
+   - callback_shell
+   - cat
+   - connect
+   - debug
+   - echo
+   - get
+   - get_sender_username
+   - getjid
+   - hello
+   - help
+   - holla
+   - idle_proc
+   - join_room
+   - log
+   - ls
+   - opensession
+   - send
+   - send_message
+   - send_simple_reply
+   - send_tune
+   - serve_forever
+   - serverinfo
+   - shutdown
+   - status_message_changed
+   - status_type_changed
+   - top_of_help_message
+   - unknown_command
+   - whoami
+
+clusterbot.ShellClusterBot
+--------------------------
+Classes:
+ * ShellClusterBot -- missing methods:
+   - bottom_of_help_message
+   - broadcast
+   - build_message
+   - build_reply
+   - callback_message
+   - callback_presence
+   - cat
+   - connect
+   - debug
+   - echo
+   - get
+   - get_sender_username
+   - getjid
+   - hello
+   - help
+   - holla
+   - idle_proc
+   - join_room
+   - log
+   - ls
+   - send
+   - send_message
+   - send_simple_reply
+   - send_tune
+   - serve_forever
+   - serverinfo
+   - shutdown
+   - status_message_changed
+   - status_type_changed
+   - top_of_help_message
+   - unknown_command
+   - whoami
+
+clusterbot.commands.XMLCommandParser
+------------------------------------
+Classes:
+ * XMLEventHandler -- missing methods:
+   - characters
+   - endDocument
+   - endElement
+   - endElementNS
+   - endPrefixMapping
+   - ignorableWhitespace
+   - processingInstruction
+   - setDocumentLocator
+   - skippedEntity
+   - startDocument
+   - startElementNS
+   - startPrefixMapping
+ * CommandBuilder -- missing methods:
+   - getConstructorParameterAssignments
+   - getConstructorParameters
+   - getInstanceVariableAssignments
+
+clusterbot.eventmodules.ExceedingCPUTempEvent
+---------------------------------------------
+Classes:
+ * ExceedingCPUTempEvent -- missing methods:
+   - cacheExpired
+   - getDescription
+   - getEventMessage
+   - getName
+   - getObservers
+   - isSubscribed
+   - isTriggered
+   - isUpdated
+   - setDefaultMessage
+   - setDescription
+   - setEventMessage
+   - setTriggered
+   - subscribe
+   - unsubscribe
+   - updated
+
+clusterbot.eventmodules.ExceedingCPUTempEvent2
+----------------------------------------------
+Classes:
+ * ExceedingCPUTempEvent2 -- missing methods:
+   - cacheExpired
+   - getDescription
+   - getEventMessage
+   - getName
+   - getObservers
+   - isSubscribed
+   - isTriggered
+   - isUpdated
+   - setDefaultMessage
+   - setDescription
+   - setEventMessage
+   - setTriggered
+   - subscribe
+   - unsubscribe
+   - updated
+
+clusterbot.events.CachedEvent
+-----------------------------
+Classes:
+ * CachedEvent -- missing methods:
+   - getDescription
+   - getEventMessage
+   - getName
+   - getObservers
+   - isSubscribed
+   - isTriggered
+   - isUpdated
+   - setDefaultMessage
+   - setDescription
+   - setEventMessage
+   - setTriggered
+   - subscribe
+   - unsubscribe
+   - updated
+
+clusterbot.events.XMLEventParser
+--------------------------------
+Classes:
+ * XMLEventHandler -- missing methods:
+   - characters
+   - endDocument
+   - endElement
+   - endElementNS
+   - endPrefixMapping
+   - ignorableWhitespace
+   - processingInstruction
+   - setDocumentLocator
+   - skippedEntity
+   - startDocument
+   - startElementNS
+   - startPrefixMapping
+
+clusterbot.tests.EventDrivenShellClusterBotTest
+-----------------------------------------------
+Classes:
+ * EventDrivenShellClusterBotTest -- missing methods:
+   - assertAlmostEqual
+   - assertAlmostEquals
+   - assertEqual
+   - assertEquals
+   - assertFalse
+   - assertNotAlmostEqual
+   - assertNotAlmostEquals
+   - assertNotEqual
+   - assertNotEquals
+   - assertRaises
+   - assertTrue
+   - assert_
+   - countTestCases
+   - debug
+   - defaultTestResult
+   - fail
+   - failIf
+   - failIfAlmostEqual
+   - failIfEqual
+   - failUnless
+   - failUnlessAlmostEqual
+   - failUnlessEqual
+   - failUnlessRaises
+   - id
+   - run
+   - shortDescription
+
+clusterbot.tests.MyXMLReaderTest
+--------------------------------
+Classes:
+ * MyXMLReaderTest -- missing methods:
+   - assertAlmostEqual
+   - assertAlmostEquals
+   - assertEqual
+   - assertEquals
+   - assertFalse
+   - assertNotAlmostEqual
+   - assertNotAlmostEquals
+   - assertNotEqual
+   - assertNotEquals
+   - assertRaises
+   - assertTrue
+   - assert_
+   - countTestCases
+   - debug
+   - defaultTestResult
+   - fail
+   - failIf
+   - failIfAlmostEqual
+   - failIfEqual
+   - failUnless
+   - failUnlessAlmostEqual
+   - failUnlessEqual
+   - failUnlessRaises
+   - id
+   - run
+   - setUp
+   - shortDescription
+   - tearDown
+
+clusterbot.tests.XMLParserTest
+------------------------------
+Classes:
+ * XMLParserTest -- missing methods:
+   - assertAlmostEqual
+   - assertAlmostEquals
+   - assertEqual
+   - assertEquals
+   - assertFalse
+   - assertNotAlmostEqual
+   - assertNotAlmostEquals
+   - assertNotEqual
+   - assertNotEquals
+   - assertRaises
+   - assertTrue
+   - assert_
+   - countTestCases
+   - debug
+   - defaultTestResult
+   - fail
+   - failIf
+   - failIfAlmostEqual
+   - failIfEqual
+   - failUnless
+   - failUnlessAlmostEqual
+   - failUnlessEqual
+   - failUnlessRaises
+   - id
+   - run
+   - setUp
+   - shortDescription
+   - tearDown
+
+clusterbot.util.MyXMLReader
+---------------------------
+Classes:
+ * MyXMLReader -- missing methods:
+   - characters
+   - endDocument
+   - endElement
+   - endElementNS
+   - endPrefixMapping
+   - ignorableWhitespace
+   - processingInstruction
+   - setDocumentLocator
+   - skippedEntity
+   - startDocument
+   - startElementNS
+   - startPrefixMapping
+

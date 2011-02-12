@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The myconsole Module &mdash; Clusterbot v0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.7',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Clusterbot v0.7 documentation" href="index.html" />
+    <link rel="up" title="Developers documentation" href="develop.html" />
+    <link rel="next" title="The ssh Module" href="ssh.html" />
+    <link rel="prev" title="The main Module" href="main.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="ssh.html" title="The ssh Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="The main Module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" accesskey="U">Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-clusterbot.shell.myconsole">
+<h1>The <tt class="xref docutils literal"><span class="pre">myconsole</span></tt> Module<a class="headerlink" href="#module-clusterbot.shell.myconsole" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clusterbot.shell.myconsole.MyConsole">
+<em class="property">class </em><tt class="descclassname">clusterbot.shell.myconsole.</tt><tt class="descname">MyConsole</tt><big>(</big><em>outputCallback</em>, <em>host</em>, <em>user</em>, <em>pwd=''</em><big>)</big><a class="headerlink" href="#clusterbot.shell.myconsole.MyConsole" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="clusterbot.shell.myconsole.MyConsole.hasTerminated">
+<tt class="descname">hasTerminated</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.shell.myconsole.MyConsole.hasTerminated" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">True iff the shell session is terminated (this is also true if the session has never been established).</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.shell.myconsole.MyConsole.reconnect">
+<tt class="descname">reconnect</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.shell.myconsole.MyConsole.reconnect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.shell.myconsole.MyConsole.sendcmd">
+<tt class="descname">sendcmd</tt><big>(</big><em>command</em><big>)</big><a class="headerlink" href="#clusterbot.shell.myconsole.MyConsole.sendcmd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a command to the console.
+.. note:</p>
+<div class="highlight-python"><pre>BUG: This issue can be improved upon, but cannot be solved by a locking and synchronization mechanism, 
+since there is no guarantee that a command is followed by a reply.</pre>
+</div>
+<p>The command sending and execution is not atomic. 
+It might happen that several commands are sent and the corresponding output comes unordered at any time.
+To make things worse, the most recent command string is used to strip the echo of the ssh response from the output.
+So if the output is a reply to a previous command and contains the most recent command string, the response is stripped by the first occurrence of this string.
+On the other hand the reply might still contain the ssh echo of the command, if another command was issued before the reply could be processed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.shell.myconsole.MyConsole.setTerminated">
+<tt class="descname">setTerminated</tt><big>(</big><em>terminate=True</em><big>)</big><a class="headerlink" href="#clusterbot.shell.myconsole.MyConsole.setTerminated" title="Permalink to this definition">¶</a></dt>
+<dd>Sets the <tt class="xref docutils literal"><span class="pre">__hasTerminated</span></tt>. If <em>terminate</em> is True, the shell session is terminated.</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="main.html"
+                                  title="previous chapter">The <tt class="docutils literal docutils literal docutils literal"><span class="pre">main</span></tt> Module</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="ssh.html"
+                                  title="next chapter">The <tt class="docutils literal"><span class="pre">ssh</span></tt> Module</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/shell.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ssh.html" title="The ssh Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="The main Module"
+             >previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" >Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2011, Johannes Müller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>

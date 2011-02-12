@@ -1,0 +1,8 @@
+The :mod:`myconsole` Module
+---------------------------
+
+.. automodule:: clusterbot.shell.myconsole
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

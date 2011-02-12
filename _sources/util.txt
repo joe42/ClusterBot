@@ -1,0 +1,32 @@
+The :mod:`string` Module
+------------------------
+
+.. automodule:: clusterbot.util.string
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`ClassBuilder` Module
+------------------------------
+
+.. automodule:: clusterbot.util.ClassBuilder
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`timer` Module
+-----------------------
+
+.. automodule:: clusterbot.util.timer
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`MyXMLReader` Module
+-----------------------------
+
+.. automodule:: clusterbot.util.MyXMLReader
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

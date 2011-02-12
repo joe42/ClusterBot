@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The ClusterBot Module &mdash; Clusterbot v0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.7',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Clusterbot v0.7 documentation" href="index.html" />
+    <link rel="up" title="Developers documentation" href="develop.html" />
+    <link rel="next" title="The EventDrivenShellClusterBot Module" href="EventDrivenShellClusterBot.html" />
+    <link rel="prev" title="Developers documentation" href="develop.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="EventDrivenShellClusterBot.html" title="The EventDrivenShellClusterBot Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="develop.html" title="Developers documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" accesskey="U">Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-clusterbot.ClusterBot">
+<h1>The <tt class="xref docutils literal"><span class="pre">ClusterBot</span></tt> Module<a class="headerlink" href="#module-clusterbot.ClusterBot" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clusterbot.ClusterBot.ClusterBot">
+<em class="property">class </em><tt class="descclassname">clusterbot.ClusterBot.</tt><tt class="descname">ClusterBot</tt><big>(</big><em>jabberID</em>, <em>jabberPW</em>, <em>allowedJIDs</em>, <em>headnodeIP</em>, <em>headnodeUser</em>, <em>headnodePW</em>, <em>debug=False</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">jabberbot.JabberBot</span></tt></p>
+<p>A Jabber service to monitor clusters.</p>
+<ul class="simple">
+<li>Has a standing ssh connection to the headnode of a cluster to send commands via the ssh module.</li>
+<li>Allows for whitelisting by Jabber ids.</li>
+<li>Supports runtime loading of new command modules (see <a title="clusterbot.ClusterBot.ClusterBot.importnewcommands" class="reference internal" href="#clusterbot.ClusterBot.ClusterBot.importnewcommands"><tt class="xref docutils literal"><span class="pre">importnewcommands()</span></tt></a>).</li>
+</ul>
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.callback_presence">
+<tt class="descname">callback_presence</tt><big>(</big><em>conn</em>, <em>presence</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.callback_presence" title="Permalink to this definition">¶</a></dt>
+<dd>Overwrites callback_presence to disallow subscription of users not listed in allowedJIDS.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.cat">
+<tt class="descname">cat</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.cat" title="Permalink to this definition">¶</a></dt>
+<dd>Works like cat on Linux.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.echo">
+<tt class="descname">echo</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.echo" title="Permalink to this definition">¶</a></dt>
+<dd>Repeats everything like a parrot.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.get">
+<tt class="descname">get</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.get" title="Permalink to this definition">¶</a></dt>
+<dd>Gets a few system parameters, but at the moment only get temp is allowed to view system temperatures.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.getjid">
+<tt class="descname">getjid</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.getjid" title="Permalink to this definition">¶</a></dt>
+<dd>Tells your jabber id.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.hello">
+<tt class="descname">hello</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.hello" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.holla">
+<tt class="descname">holla</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.holla" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.importnewcommands">
+<tt class="descname">importnewcommands</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.importnewcommands" title="Permalink to this definition">¶</a></dt>
+<dd>Loads new command modules from the package clusterbot.commandmodules</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.listcommands">
+<tt class="descname">listcommands</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.listcommands" title="Permalink to this definition">¶</a></dt>
+<dd>Lists plugged in commands.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.ls">
+<tt class="descname">ls</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.ls" title="Permalink to this definition">¶</a></dt>
+<dd>Works like ls on Linux.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.quit">
+<tt class="descname">quit</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.quit" title="Permalink to this definition">¶</a></dt>
+<dd>Overwrites <tt class="xref docutils literal"><span class="pre">clusterbot.jabberbot.JabberBot.quit()</span></tt>.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.reconnect">
+<tt class="descname">reconnect</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.reconnect" title="Permalink to this definition">¶</a></dt>
+<dd>Connects the bot via ssh to the headnode of the cluster.
+This is useful in case the ssh connection timed out.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.serverinfo">
+<tt class="descname">serverinfo</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.serverinfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.unknown_command">
+<tt class="descname">unknown_command</tt><big>(</big><em>mess</em>, <em>cmd</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.unknown_command" title="Permalink to this definition">¶</a></dt>
+<dd>Overwrites <tt class="xref docutils literal"><span class="pre">clusterbot.jabberbot.JabberBot.unknown_command()</span></tt>.
+Handles plugin commands.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.whoami">
+<tt class="descname">whoami</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.whoami" title="Permalink to this definition">¶</a></dt>
+<dd>Tells your username.</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="develop.html"
+                                  title="previous chapter">Developers documentation</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="EventDrivenShellClusterBot.html"
+                                  title="next chapter">The <tt class="docutils literal"><span class="pre">EventDrivenShellClusterBot</span></tt> Module</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/ClusterBot.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="EventDrivenShellClusterBot.html" title="The EventDrivenShellClusterBot Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="develop.html" title="Developers documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" >Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2011, Johannes Müller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>

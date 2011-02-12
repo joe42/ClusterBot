@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The EventDrivenShellClusterBot Module &mdash; Clusterbot v0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.7',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Clusterbot v0.7 documentation" href="index.html" />
+    <link rel="up" title="Developers documentation" href="develop.html" />
+    <link rel="next" title="The ShellClusterBot Module" href="ShellClusterBot.html" />
+    <link rel="prev" title="The ClusterBot Module" href="ClusterBot.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="ShellClusterBot.html" title="The ShellClusterBot Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ClusterBot.html" title="The ClusterBot Module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" accesskey="U">Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-clusterbot.EventDrivenShellClusterBot">
+<h1>The <tt class="xref docutils literal"><span class="pre">EventDrivenShellClusterBot</span></tt> Module<a class="headerlink" href="#module-clusterbot.EventDrivenShellClusterBot" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot">
+<em class="property">class </em><tt class="descclassname">clusterbot.EventDrivenShellClusterBot.</tt><tt class="descname">EventDrivenShellClusterBot</tt><big>(</big><em>jabberID</em>, <em>jabberPW</em>, <em>allowedJIDs</em>, <em>headnodeIP</em>, <em>headnodeUser</em>, <em>headnodePW</em>, <em>debug=False</em><big>)</big><a class="headerlink" href="#clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a title="clusterbot.ShellClusterBot.ShellClusterBot" class="reference external" href="ShellClusterBot.html#clusterbot.ShellClusterBot.ShellClusterBot"><tt class="xref docutils literal"><span class="pre">clusterbot.ShellClusterBot.ShellClusterBot</span></tt></a></p>
+<dl class="method">
+<dt id="clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.broadcast">
+<tt class="descname">broadcast</tt><big>(</big><em>message</em>, <em>users=None</em><big>)</big><a class="headerlink" href="#clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.broadcast" title="Permalink to this definition">¶</a></dt>
+<dd>Broadcasts the message to a list of users given as jabber ids.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.connect_callback">
+<tt class="descname">connect_callback</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.connect_callback" title="Permalink to this definition">¶</a></dt>
+<dd>Overwrites <a title="clusterbot.ShellClusterBot.ShellClusterBot.connect_callback" class="reference external" href="ShellClusterBot.html#clusterbot.ShellClusterBot.ShellClusterBot.connect_callback"><tt class="xref docutils literal"><span class="pre">clusterbot.ShellClusterBot.ShellClusterBot.connect_callback()</span></tt></a> to start event polling at connection time.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.createevent">
+<tt class="descname">createevent</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.createevent" title="Permalink to this definition">¶</a></dt>
+<dd>Creates a new event module from an XML string.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.importnewevents">
+<tt class="descname">importnewevents</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.importnewevents" title="Permalink to this definition">¶</a></dt>
+<dd>Loads new event modules from the package clusterbot.eventmodules</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.listevents">
+<tt class="descname">listevents</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.listevents" title="Permalink to this definition">¶</a></dt>
+<dd>Lists events to subscribe to.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.quit">
+<tt class="descname">quit</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.quit" title="Permalink to this definition">¶</a></dt>
+<dd>Overwrites <a title="clusterbot.ShellClusterBot.ShellClusterBot.quit" class="reference external" href="ShellClusterBot.html#clusterbot.ShellClusterBot.ShellClusterBot.quit"><tt class="xref docutils literal"><span class="pre">clusterbot.ShellClusterBot.ShellClusterBot.quit()</span></tt></a>.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.subscribe">
+<tt class="descname">subscribe</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.subscribe" title="Permalink to this definition">¶</a></dt>
+<dd>Subscribe to an event.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.unsubscribe">
+<tt class="descname">unsubscribe</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.EventDrivenShellClusterBot.EventDrivenShellClusterBot.unsubscribe" title="Permalink to this definition">¶</a></dt>
+<dd>Unsubscribe from an event.</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="ClusterBot.html"
+                                  title="previous chapter">The <tt class="docutils literal docutils literal"><span class="pre">ClusterBot</span></tt> Module</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="ShellClusterBot.html"
+                                  title="next chapter">The <tt class="docutils literal"><span class="pre">ShellClusterBot</span></tt> Module</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/EventDrivenShellClusterBot.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ShellClusterBot.html" title="The ShellClusterBot Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ClusterBot.html" title="The ClusterBot Module"
+             >previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" >Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2011, Johannes Müller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>

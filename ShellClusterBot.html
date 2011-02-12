@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The ShellClusterBot Module &mdash; Clusterbot v0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.7',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Clusterbot v0.7 documentation" href="index.html" />
+    <link rel="up" title="Developers documentation" href="develop.html" />
+    <link rel="next" title="The batchqueues Module" href="commandmodules.html" />
+    <link rel="prev" title="The EventDrivenShellClusterBot Module" href="EventDrivenShellClusterBot.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="commandmodules.html" title="The batchqueues Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="EventDrivenShellClusterBot.html" title="The EventDrivenShellClusterBot Module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" accesskey="U">Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-clusterbot.ShellClusterBot">
+<h1>The <tt class="xref docutils literal"><span class="pre">ShellClusterBot</span></tt> Module<a class="headerlink" href="#module-clusterbot.ShellClusterBot" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clusterbot.ShellClusterBot.ShellClusterBot">
+<em class="property">class </em><tt class="descclassname">clusterbot.ShellClusterBot.</tt><tt class="descname">ShellClusterBot</tt><big>(</big><em>jabberID</em>, <em>jabberPW</em>, <em>allowedJIDs</em>, <em>headnodeIP</em>, <em>headnodeUser</em>, <em>headnodePW</em>, <em>debug=False</em><big>)</big><a class="headerlink" href="#clusterbot.ShellClusterBot.ShellClusterBot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a title="clusterbot.ClusterBot.ClusterBot" class="reference external" href="ClusterBot.html#clusterbot.ClusterBot.ClusterBot"><tt class="xref docutils literal"><span class="pre">clusterbot.ClusterBot.ClusterBot</span></tt></a></p>
+<p>Allows for interactive shell-like sessions via xmpp.
+Take a look at <a title="clusterbot.ShellClusterBot.ShellClusterBot.connect_callback" class="reference internal" href="#clusterbot.ShellClusterBot.ShellClusterBot.connect_callback"><tt class="xref docutils literal"><span class="pre">connect_callback()</span></tt></a> for an example on how to invoke ShellClusterBot.</p>
+<dl class="method">
+<dt id="clusterbot.ShellClusterBot.ShellClusterBot.callback_shell">
+<tt class="descname">callback_shell</tt><big>(</big><em>conn</em>, <em>mess</em><big>)</big><a class="headerlink" href="#clusterbot.ShellClusterBot.ShellClusterBot.callback_shell" title="Permalink to this definition">¶</a></dt>
+<dd>Handle shell connections.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ShellClusterBot.ShellClusterBot.connect_callback">
+<tt class="descname">connect_callback</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.ShellClusterBot.ShellClusterBot.connect_callback" title="Permalink to this definition">¶</a></dt>
+<dd>Register this callback to handle emulated shell commands.
+Must be called when connection to xmpp server is established and self.conn exists.
+Therefore it must be given as an argument to serve_forever after object creation like:
+.. highlight::
+bot = ShellClusterBot(jabberID, jabberPW, jabberWhitelist, headnodeIP, headnodeUser, headnodePW)
+bot.serve_forever(connect_callback = bot.connect_callback)
+bot.quit()</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ShellClusterBot.ShellClusterBot.opensession">
+<tt class="descname">opensession</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ShellClusterBot.ShellClusterBot.opensession" title="Permalink to this definition">¶</a></dt>
+<dd>Execute any commands like in a shell. 
+Type end to end the session
+The syntax is: opensession [username] password</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ShellClusterBot.ShellClusterBot.quit">
+<tt class="descname">quit</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.ShellClusterBot.ShellClusterBot.quit" title="Permalink to this definition">¶</a></dt>
+<dd>Overwrites <a title="clusterbot.ClusterBot.ClusterBot.quit" class="reference external" href="ClusterBot.html#clusterbot.ClusterBot.ClusterBot.quit"><tt class="xref docutils literal"><span class="pre">clusterbot.ClusterBot.ClusterBot.quit()</span></tt></a>.</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="EventDrivenShellClusterBot.html"
+                                  title="previous chapter">The <tt class="docutils literal docutils literal docutils literal"><span class="pre">EventDrivenShellClusterBot</span></tt> Module</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="commandmodules.html"
+                                  title="next chapter">The <tt class="docutils literal"><span class="pre">batchqueues</span></tt> Module</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/ShellClusterBot.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="commandmodules.html" title="The batchqueues Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="EventDrivenShellClusterBot.html" title="The EventDrivenShellClusterBot Module"
+             >previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" >Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2011, Johannes Müller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>

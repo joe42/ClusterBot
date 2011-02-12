@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Setup documentation &mdash; Clusterbot v0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.7',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Clusterbot v0.7 documentation" href="index.html" />
+    <link rel="next" title="Developers documentation" href="develop.html" />
+    <link rel="prev" title="Users documentation" href="user.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="develop.html" title="Developers documentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="user.html" title="Users documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="setup-documentation">
+<h1>Setup documentation<a class="headerlink" href="#setup-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>The Clusterbot service needs Debian server representing the headnode of a cluster.
+On this server a user account accessible via ssh must exist as well as <a class="reference external" href="www.pdsh.info/">pdsh</a>, which is used for the implementation of a few commands.
+The Linux package sensors needs to be installed to monitor system temperatures, also on all computenodes.
+Then again, one server needs to run the application. This server should have a Linux distribution installed, since the Clusterbot service uses fork.
+This is due to current problems occuring with the fork command on FreeBSD &lt;= 6.3, Cygwin and OS/2 EMX (see <a class="reference external" href="http://docs.python.org/library/os.html#os.fork">http://docs.python.org/library/os.html#os.fork</a>).
+Furthermore Python 2.6 should be installed to run the application. The server needs to be able to establish a connection via ssh and a XMPP capable Instant Messenger.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Since the data exchanged by the users with the service can contain security critical data it is highly recommended to use one XMPP server,
+which enforces encryption. Since the encryption is no End-to-End-Encryption the XMPP server must be trustworthy, as it can intercept all messages and read them as plaintext.</p>
+</div>
+<p>Last but not least, a Jabber account is required. This account is used by Clusterbot to offer its service.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The Jabber account should have a strong password to avoid Trojan horse like attacks on the service.</p>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>To run the application call:</p>
+<p><strong>python</strong> <em>-m clusterbot.ClusterBot [ xmlconfigfile ] [usepwd]</em></p>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt>xmlconfigfile</dt>
+<dd><p class="first last"><em>The XML configuration file for clusterbot.</em></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>usepwd</dt>
+<dd><p class="first last"><em>Specify password for the headnode on the command line instead of the XML configuration file.
+Do not substitute usepwd with the actual password.</em></p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If the account running the application has a private key for authentication on the headnode, the key will be used.
+In this case there is no need to specify any headnode password nor a username. If you still use the usepwd option,
+just hit enter twice. To not use private keys they either need to be deleted or the application needs to be started from an account
+which does not posess said keys. The precedence of the credentials is</p>
+<ol class="last arabic simple">
+<li>private key</li>
+<li>command line input</li>
+<li>XML configuration file</li>
+</ol>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If a private key is used for authentication, the opensession command allows for arbitrary execution of commands when used without parameters.</p>
+</div>
+<p><strong>Examples:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>python -m clusterbot.ClusterBot /home/user/my_clusterbot_config_file.xml usepwd</li>
+<li>python -m clusterbot.ClusterBot /home/user/my_clusterbot_config_file.xml</li>
+<li>python -m clusterbot.ClusterBot usepwd</li>
+<li>python -m clusterbot.ClusterBot</li>
+</ul>
+</blockquote>
+</blockquote>
+<p><strong>config.xml:</strong></p>
+<div class="highlight-xml"><div class="highlight"><pre>	<span class="nt">&lt;headnode</span> <span class="na">user=</span><span class="s">&quot;testaccount&quot;</span> <span class="na">ip=</span><span class="s">&quot;127.0.0.1&quot;</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;jabber</span> <span class="na">jid=</span><span class="s">&quot;bot@jabber.org&quot;</span> <span class="na">password=</span><span class="s">&quot;123456&quot;</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;whitelist</span> <span class="na">jid=</span><span class="s">&quot;yourself@jabber.ccc.de&quot;</span><span class="nt">/&gt;</span>
+			<span class="nt">&lt;whitelist</span> <span class="na">jid=</span><span class="s">&quot;buddy@jabber.ccc.de&quot;</span><span class="nt">/&gt;</span>
+		<span class="nt">&lt;/jabber&gt;</span>
+	<span class="nt">&lt;/headnode&gt;</span>
+</pre></div>
+</div>
+<p>The <em>headnode</em> tag supplies information about the headnode of the cluster. The information consists of the values of the user as well as the ip attribute.
+Those attributes take a valid username for an ssh-account and the ip address of the headnode respectively.
+The ssh connection which is established during the applications runtime uses this account to execute Clusterbot&#8217;s commands.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">For security reasons this account should be restricted as much as possible. The user should not be able to login as root to limit damage in the worst case.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<blockquote>
+The headnode tag supplies a password tag, but since the password would be stored in clear text it is recommended to use Clusterbot&#8217;s usepwd argument instead.</blockquote>
+<p class="last">First the Jabber tags jid attribute is assigned the Jabber ID of the required account. Second the password attribute specifies the accounts password.
+To allow for connections via a remote Jabber client, the client&#8217;s Jabber ID needs to be listed via one whitelist tags jid attribute.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Setup documentation</a><ul>
+<li><a class="reference external" href="#requirements">Requirements</a></li>
+<li><a class="reference external" href="#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="user.html"
+                                  title="previous chapter">Users documentation</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="develop.html"
+                                  title="next chapter">Developers documentation</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/setup.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="develop.html" title="Developers documentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="user.html" title="Users documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2011, Johannes Müller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>

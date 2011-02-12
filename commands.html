@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The XMLCommandParser Module &mdash; Clusterbot v0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.7',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Clusterbot v0.7 documentation" href="index.html" />
+    <link rel="up" title="Developers documentation" href="develop.html" />
+    <link rel="next" title="The ExceedingCPUTempEvent2 Module" href="eventmodules.html" />
+    <link rel="prev" title="The batchqueues Module" href="commandmodules.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="eventmodules.html" title="The ExceedingCPUTempEvent2 Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="commandmodules.html" title="The batchqueues Module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" accesskey="U">Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-clusterbot.commands.XMLCommandParser">
+<h1>The <tt class="xref docutils literal"><span class="pre">XMLCommandParser</span></tt> Module<a class="headerlink" href="#module-clusterbot.commands.XMLCommandParser" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clusterbot.commands.XMLCommandParser.CommandBuilder">
+<em class="property">class </em><tt class="descclassname">clusterbot.commands.XMLCommandParser.</tt><tt class="descname">CommandBuilder</tt><a class="headerlink" href="#clusterbot.commands.XMLCommandParser.CommandBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a title="clusterbot.util.ClassBuilder.ClassBuilder" class="reference external" href="util.html#clusterbot.util.ClassBuilder.ClassBuilder"><tt class="xref docutils literal"><span class="pre">clusterbot.util.ClassBuilder.ClassBuilder</span></tt></a></p>
+<dl class="method">
+<dt id="clusterbot.commands.XMLCommandParser.CommandBuilder.getDescription">
+<tt class="descname">getDescription</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.commands.XMLCommandParser.CommandBuilder.getDescription" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.commands.XMLCommandParser.CommandBuilder.getRegexNamesAsParameters">
+<tt class="descname">getRegexNamesAsParameters</tt><big>(</big><em>startWithComma=False</em>, <em>withDefaultValues=False</em><big>)</big><a class="headerlink" href="#clusterbot.commands.XMLCommandParser.CommandBuilder.getRegexNamesAsParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.commands.XMLCommandParser.CommandBuilder.getRegexSearches">
+<tt class="descname">getRegexSearches</tt><big>(</big><em>type='all'</em><big>)</big><a class="headerlink" href="#clusterbot.commands.XMLCommandParser.CommandBuilder.getRegexSearches" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="clusterbot.commands.XMLCommandParser.XMLEventHandler">
+<em class="property">class </em><tt class="descclassname">clusterbot.commands.XMLCommandParser.</tt><tt class="descname">XMLEventHandler</tt><a class="headerlink" href="#clusterbot.commands.XMLCommandParser.XMLEventHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">xml.sax.handler.ContentHandler</span></tt></p>
+<p>Acts as a supply of information to help the builder in creating the product (a string representing a python module).
+The product can then be constructed by invoking <a title="clusterbot.commands.XMLCommandParser.XMLEventHandler.getpythonfile" class="reference internal" href="#clusterbot.commands.XMLCommandParser.XMLEventHandler.getpythonfile"><tt class="xref docutils literal"><span class="pre">getpythonfile()</span></tt></a>.</p>
+<dl class="method">
+<dt id="clusterbot.commands.XMLCommandParser.XMLEventHandler.constructCachedCommand">
+<tt class="descname">constructCachedCommand</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.commands.XMLCommandParser.XMLEventHandler.constructCachedCommand" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.commands.XMLCommandParser.XMLEventHandler.getpythonfile">
+<tt class="descname">getpythonfile</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.commands.XMLCommandParser.XMLEventHandler.getpythonfile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.commands.XMLCommandParser.XMLEventHandler.startElement">
+<tt class="descname">startElement</tt><big>(</big><em>tagname</em>, <em>attrs</em><big>)</big><a class="headerlink" href="#clusterbot.commands.XMLCommandParser.XMLEventHandler.startElement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.commands.XMLCommandParser.createCommandFromFile">
+<tt class="descclassname">clusterbot.commands.XMLCommandParser.</tt><tt class="descname">createCommandFromFile</tt><big>(</big><em>xmlfile</em><big>)</big><a class="headerlink" href="#clusterbot.commands.XMLCommandParser.createCommandFromFile" title="Permalink to this definition">¶</a></dt>
+<dd>Parse the XML file and create a Python module with the name of the command</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.commands.XMLCommandParser.createCommandFromString">
+<tt class="descclassname">clusterbot.commands.XMLCommandParser.</tt><tt class="descname">createCommandFromString</tt><big>(</big><em>xmlstring</em><big>)</big><a class="headerlink" href="#clusterbot.commands.XMLCommandParser.createCommandFromString" title="Permalink to this definition">¶</a></dt>
+<dd>Parse the string xmlstring and create a Python module with the name of the command</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.commands.XMLCommandParser.parseCommand">
+<tt class="descclassname">clusterbot.commands.XMLCommandParser.</tt><tt class="descname">parseCommand</tt><big>(</big><em>xmlfile</em><big>)</big><a class="headerlink" href="#clusterbot.commands.XMLCommandParser.parseCommand" title="Permalink to this definition">¶</a></dt>
+<dd>Parse the file xmlfile and return a python module as a string</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="commandmodules.html"
+                                  title="previous chapter">The <tt class="docutils literal docutils literal docutils literal"><span class="pre">batchqueues</span></tt> Module</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="eventmodules.html"
+                                  title="next chapter">The <tt class="docutils literal"><span class="pre">ExceedingCPUTempEvent2</span></tt> Module</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/commands.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eventmodules.html" title="The ExceedingCPUTempEvent2 Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="commandmodules.html" title="The batchqueues Module"
+             >previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" >Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2011, Johannes Müller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>

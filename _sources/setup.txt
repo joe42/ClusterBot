@@ -1,0 +1,86 @@
+Setup documentation
+======================================
+
+
+Requirements
+---------------------
+
+The Clusterbot service needs Debian server representing the headnode of a cluster. 
+On this server a user account accessible via ssh must exist as well as `pdsh <www.pdsh.info/>`_, which is used for the implementation of a few commands.
+The Linux package sensors needs to be installed to monitor system temperatures, also on all computenodes.
+Then again, one server needs to run the application. This server should have a Linux distribution installed, since the Clusterbot service uses fork. 
+This is due to current problems occuring with the fork command on FreeBSD <= 6.3, Cygwin and OS/2 EMX (see http://docs.python.org/library/os.html#os.fork). 
+Furthermore Python 2.6 should be installed to run the application. The server needs to be able to establish a connection via ssh and a XMPP capable Instant Messenger.
+
+.. warning::
+
+	Since the data exchanged by the users with the service can contain security critical data it is highly recommended to use one XMPP server, 
+	which enforces encryption. Since the encryption is no End-to-End-Encryption the XMPP server must be trustworthy, as it can intercept all messages and read them as plaintext.
+
+Last but not least, a Jabber account is required. This account is used by Clusterbot to offer its service.
+
+.. warning::
+
+	The Jabber account should have a strong password to avoid Trojan horse like attacks on the service.
+
+
+Usage
+---------------------
+
+To run the application call: 
+
+**python** *-m clusterbot.ClusterBot [ xmlconfigfile ] [usepwd]* 
+
+	* xmlconfigfile	
+		*The XML configuration file for clusterbot.*
+
+	* usepwd
+		*Specify password for the headnode on the command line instead of the XML configuration file.
+		Do not substitute usepwd with the actual password.*
+  	
+	.. note::
+	
+		If the account running the application has a private key for authentication on the headnode, the key will be used. 
+		In this case there is no need to specify any headnode password nor a username. If you still use the usepwd option,
+		just hit enter twice. To not use private keys they either need to be deleted or the application needs to be started from an account
+		which does not posess said keys. The precedence of the credentials is 
+		
+		1. private key
+		2. command line input
+		3. XML configuration file
+		
+	
+	.. warning::
+	
+		If a private key is used for authentication, the opensession command allows for arbitrary execution of commands when used without parameters.  
+	
+	
+	**Examples:**
+	
+		- python -m clusterbot.ClusterBot /home/user/my_clusterbot_config_file.xml usepwd 
+		- python -m clusterbot.ClusterBot /home/user/my_clusterbot_config_file.xml
+		- python -m clusterbot.ClusterBot usepwd 
+		- python -m clusterbot.ClusterBot
+
+
+**config.xml:**
+
+.. literalinclude:: ../config.xml
+	:language: xml
+
+The *headnode* tag supplies information about the headnode of the cluster. The information consists of the values of the user as well as the ip attribute.
+Those attributes take a valid username for an ssh-account and the ip address of the headnode respectively. 
+The ssh connection which is established during the applications runtime uses this account to execute Clusterbot's commands.
+
+.. warning::
+
+	For security reasons this account should be restricted as much as possible. The user should not be able to login as root to limit damage in the worst case.
+
+.. note::
+
+	The headnode tag supplies a password tag, but since the password would be stored in clear text it is recommended to use Clusterbot's usepwd argument instead. 
+
+ First the Jabber tags jid attribute is assigned the Jabber ID of the required account. Second the password attribute specifies the accounts password.
+ To allow for connections via a remote Jabber client, the client's Jabber ID needs to be listed via one whitelist tags jid attribute. 
+ 
+

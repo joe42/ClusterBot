@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Event Module &mdash; Clusterbot v0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.7',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Clusterbot v0.7 documentation" href="index.html" />
+    <link rel="up" title="Developers documentation" href="develop.html" />
+    <link rel="next" title="The main Module" href="main.html" />
+    <link rel="prev" title="The ExceedingCPUTempEvent2 Module" href="eventmodules.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="The main Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="eventmodules.html" title="The ExceedingCPUTempEvent2 Module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" accesskey="U">Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-clusterbot.events.Event">
+<h1>The <tt class="xref docutils literal"><span class="pre">Event</span></tt> Module<a class="headerlink" href="#module-clusterbot.events.Event" title="Permalink to this headline">¶</a></h1>
+<p>Baseclass of events for ClusterBot: L{ClusterBot&lt;ClusterBot&gt;}</p>
+<p>Subclasses need to be implemented in the events package.
+They need to override seteventMessage().</p>
+<dl class="class">
+<dt id="clusterbot.events.Event.Event">
+<em class="property">class </em><tt class="descclassname">clusterbot.events.Event.</tt><tt class="descname">Event</tt><big>(</big><em>name</em>, <em>description=''</em>, <em>defaultMessage=''</em><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">object</span></tt></p>
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.getDescription">
+<tt class="descname">getDescription</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.getDescription" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.getEventMessage">
+<tt class="descname">getEventMessage</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.getEventMessage" title="Permalink to this definition">¶</a></dt>
+<dd>Gets the event message.
+This is no simple getter method. It also sets the updated status to False.
+:returns: the current message of this event or defaultMessage iff the current message is None</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.getName">
+<tt class="descname">getName</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.getName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.getObservers">
+<tt class="descname">getObservers</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.getObservers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.isSubscribed">
+<tt class="descname">isSubscribed</tt><big>(</big><em>observer</em><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.isSubscribed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">true iff listener is subscribed to this event</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.isTriggered">
+<tt class="descname">isTriggered</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.isTriggered" title="Permalink to this definition">¶</a></dt>
+<dd>Gets the status of the event. 
+States if it is triggered or not. This is no simple getter method. It updates the event by executing setEventMessage.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.isUpdated">
+<tt class="descname">isUpdated</tt><big>(</big><em>bool=True</em><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.isUpdated" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">True iff the event message changed after the last call to getEventMessage</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.setDefaultMessage">
+<tt class="descname">setDefaultMessage</tt><big>(</big><em>val</em><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.setDefaultMessage" title="Permalink to this definition">¶</a></dt>
+<dd>sets the default Message which is returned by getEventMessage if the event message is None</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.setDescription">
+<tt class="descname">setDescription</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.setDescription" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.setEventMessage">
+<tt class="descname">setEventMessage</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.setEventMessage" title="Permalink to this definition">¶</a></dt>
+<dd>Stub to set the event message. It should be overridden in subclass. 
+Subclasses have to set the event message, call updated() when the message changed as well as setTriggered() with the appropriate parameter</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.setTriggered">
+<tt class="descname">setTriggered</tt><big>(</big><em>bool=True</em><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.setTriggered" title="Permalink to this definition">¶</a></dt>
+<dd>Sets the status of the event. 
+States if it is triggered or not.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.subscribe">
+<tt class="descname">subscribe</tt><big>(</big><em>observer</em><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.subscribe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.unsubscribe">
+<tt class="descname">unsubscribe</tt><big>(</big><em>observer</em><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.unsubscribe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.Event.Event.updated">
+<tt class="descname">updated</tt><big>(</big><em>bool=True</em><big>)</big><a class="headerlink" href="#clusterbot.events.Event.Event.updated" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-clusterbot.events.CachedEvent">
+<h1>The <tt class="xref docutils literal"><span class="pre">CachedEvent</span></tt> Module<a class="headerlink" href="#module-clusterbot.events.CachedEvent" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clusterbot.events.CachedEvent.CachedEvent">
+<em class="property">class </em><tt class="descclassname">clusterbot.events.CachedEvent.</tt><tt class="descname">CachedEvent</tt><big>(</big><em>name</em>, <em>cache_duration=60</em>, <em>description=''</em>, <em>defaultMessage=''</em><big>)</big><a class="headerlink" href="#clusterbot.events.CachedEvent.CachedEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a title="clusterbot.events.Event.Event" class="reference internal" href="#clusterbot.events.Event.Event"><tt class="xref docutils literal"><span class="pre">clusterbot.events.Event.Event</span></tt></a></p>
+<dl class="method">
+<dt id="clusterbot.events.CachedEvent.CachedEvent.cacheExpired">
+<tt class="descname">cacheExpired</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.CachedEvent.CachedEvent.cacheExpired" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.CachedEvent.CachedEvent.setEventMessage">
+<tt class="descname">setEventMessage</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.CachedEvent.CachedEvent.setEventMessage" title="Permalink to this definition">¶</a></dt>
+<dd>does nothing if cache is not expired and resets the timeStamp otherwise
+Should be overridden in subclass, where the first call should be super(CachedEvent,self).seteventMessage().</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="the-eventfactory-module">
+<h1>The <tt class="xref docutils literal"><span class="pre">EventFactory</span></tt> Module<a class="headerlink" href="#the-eventfactory-module" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="module-clusterbot.events.XMLEventParser">
+<h1>The <tt class="xref docutils literal"><span class="pre">XMLEventParser</span></tt> Module<a class="headerlink" href="#module-clusterbot.events.XMLEventParser" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clusterbot.events.XMLEventParser.EventBuilder">
+<em class="property">class </em><tt class="descclassname">clusterbot.events.XMLEventParser.</tt><tt class="descname">EventBuilder</tt><a class="headerlink" href="#clusterbot.events.XMLEventParser.EventBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a title="clusterbot.util.ClassBuilder.ClassBuilder" class="reference external" href="util.html#clusterbot.util.ClassBuilder.ClassBuilder"><tt class="xref docutils literal"><span class="pre">clusterbot.util.ClassBuilder.ClassBuilder</span></tt></a></p>
+<dl class="method">
+<dt id="clusterbot.events.XMLEventParser.EventBuilder.getDescription">
+<tt class="descname">getDescription</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.XMLEventParser.EventBuilder.getDescription" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.XMLEventParser.EventBuilder.getRegexNamesAsParameters">
+<tt class="descname">getRegexNamesAsParameters</tt><big>(</big><em>startWithComma=False</em>, <em>withDefaultValues=False</em><big>)</big><a class="headerlink" href="#clusterbot.events.XMLEventParser.EventBuilder.getRegexNamesAsParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.XMLEventParser.EventBuilder.getRegexSearches">
+<tt class="descname">getRegexSearches</tt><big>(</big><em>type='all'</em><big>)</big><a class="headerlink" href="#clusterbot.events.XMLEventParser.EventBuilder.getRegexSearches" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.XMLEventParser.EventBuilder.getTestsAsBooleanExpression">
+<tt class="descname">getTestsAsBooleanExpression</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.XMLEventParser.EventBuilder.getTestsAsBooleanExpression" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="clusterbot.events.XMLEventParser.XMLEventHandler">
+<em class="property">class </em><tt class="descclassname">clusterbot.events.XMLEventParser.</tt><tt class="descname">XMLEventHandler</tt><a class="headerlink" href="#clusterbot.events.XMLEventParser.XMLEventHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">xml.sax.handler.ContentHandler</span></tt></p>
+<p>Assembles information for finally creating the  string representing a Python module</p>
+<dl class="method">
+<dt id="clusterbot.events.XMLEventParser.XMLEventHandler.constructCachedEvent">
+<tt class="descname">constructCachedEvent</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.XMLEventParser.XMLEventHandler.constructCachedEvent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.XMLEventParser.XMLEventHandler.getpythonfile">
+<tt class="descname">getpythonfile</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.events.XMLEventParser.XMLEventHandler.getpythonfile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.events.XMLEventParser.XMLEventHandler.startElement">
+<tt class="descname">startElement</tt><big>(</big><em>tagname</em>, <em>attrs</em><big>)</big><a class="headerlink" href="#clusterbot.events.XMLEventParser.XMLEventHandler.startElement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.events.XMLEventParser.createEventFromString">
+<tt class="descclassname">clusterbot.events.XMLEventParser.</tt><tt class="descname">createEventFromString</tt><big>(</big><em>xmlstring</em><big>)</big><a class="headerlink" href="#clusterbot.events.XMLEventParser.createEventFromString" title="Permalink to this definition">¶</a></dt>
+<dd>Parse the string xmlstring and create a Python module with the name of the event.</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.events.XMLEventParser.parseEvent">
+<tt class="descclassname">clusterbot.events.XMLEventParser.</tt><tt class="descname">parseEvent</tt><big>(</big><em>xmlfile</em><big>)</big><a class="headerlink" href="#clusterbot.events.XMLEventParser.parseEvent" title="Permalink to this definition">¶</a></dt>
+<dd>Parse the file xmlfile and return a Python module as a string.</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">The <tt class="docutils literal"><span class="pre">Event</span></tt> Module</a></li>
+<li><a class="reference external" href="#module-clusterbot.events.CachedEvent">The <tt class="docutils literal"><span class="pre">CachedEvent</span></tt> Module</a></li>
+<li><a class="reference external" href="#the-eventfactory-module">The <tt class="docutils literal"><span class="pre">EventFactory</span></tt> Module</a></li>
+<li><a class="reference external" href="#module-clusterbot.events.XMLEventParser">The <tt class="docutils literal"><span class="pre">XMLEventParser</span></tt> Module</a></li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="eventmodules.html"
+                                  title="previous chapter">The <tt class="docutils literal docutils literal docutils literal"><span class="pre">ExceedingCPUTempEvent2</span></tt> Module</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="main.html"
+                                  title="next chapter">The <tt class="docutils literal"><span class="pre">main</span></tt> Module</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/events.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="The main Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="eventmodules.html" title="The ExceedingCPUTempEvent2 Module"
+             >previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" >Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2011, Johannes Müller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>

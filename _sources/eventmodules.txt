@@ -1,0 +1,16 @@
+The :mod:`ExceedingCPUTempEvent2` Module
+----------------------------------------
+
+.. automodule:: clusterbot.eventmodules.ExceedingCPUTempEvent2
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`ExceedingCPUTempEvent` Module
+---------------------------------------
+
+.. automodule:: clusterbot.eventmodules.ExceedingCPUTempEvent
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

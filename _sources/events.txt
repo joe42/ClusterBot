@@ -1,0 +1,32 @@
+The :mod:`Event` Module
+-----------------------
+
+.. automodule:: clusterbot.events.Event
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`CachedEvent` Module
+-----------------------------
+
+.. automodule:: clusterbot.events.CachedEvent
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`EventFactory` Module
+------------------------------
+
+.. automodule:: clusterbot.events.EventFactory
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`XMLEventParser` Module
+--------------------------------
+
+.. automodule:: clusterbot.events.XMLEventParser
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

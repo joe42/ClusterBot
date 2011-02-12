@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The string Module &mdash; Clusterbot v0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.7',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Clusterbot v0.7 documentation" href="index.html" />
+    <link rel="up" title="Developers documentation" href="develop.html" />
+    <link rel="prev" title="The EventDrivenShellClusterBotTest Module" href="tests.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="tests.html" title="The EventDrivenShellClusterBotTest Module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" accesskey="U">Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-clusterbot.util.string">
+<h1>The <tt class="xref docutils literal"><span class="pre">string</span></tt> Module<a class="headerlink" href="#module-clusterbot.util.string" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clusterbot.util.string.RegExData">
+<em class="property">class </em><tt class="descclassname">clusterbot.util.string.</tt><tt class="descname">RegExData</tt><big>(</big><em>regex</em>, <em>matchnr=1</em>, <em>type='int'</em><big>)</big><a class="headerlink" href="#clusterbot.util.string.RegExData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.util.string.indentLines">
+<tt class="descclassname">clusterbot.util.string.</tt><tt class="descname">indentLines</tt><big>(</big><em>str</em>, <em>indent</em><big>)</big><a class="headerlink" href="#clusterbot.util.string.indentLines" title="Permalink to this definition">¶</a></dt>
+<dd>Indents a string&#8217;s lines by <em>indent</em> spaces.
+Does not indent empty strings.</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.util.string.regSearchInt">
+<tt class="descclassname">clusterbot.util.string.</tt><tt class="descname">regSearchInt</tt><big>(</big><em>needle</em>, <em>haystack</em>, <em>grp=1</em><big>)</big><a class="headerlink" href="#clusterbot.util.string.regSearchInt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.util.string.regSearchString">
+<tt class="descclassname">clusterbot.util.string.</tt><tt class="descname">regSearchString</tt><big>(</big><em>needle</em>, <em>haystack</em>, <em>grp=1</em><big>)</big><a class="headerlink" href="#clusterbot.util.string.regSearchString" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-clusterbot.util.ClassBuilder">
+<h1>The <tt class="xref docutils literal"><span class="pre">ClassBuilder</span></tt> Module<a class="headerlink" href="#module-clusterbot.util.ClassBuilder" title="Permalink to this headline">¶</a></h1>
+<p>A base class for building Python modules.
+TODO: The attributes should be marked private by underscores and public setters should be written. 
+These then need to be used in all subclasses as well. (Python refactoring is hard.)</p>
+<dl class="class">
+<dt id="clusterbot.util.ClassBuilder.ClassBuilder">
+<em class="property">class </em><tt class="descclassname">clusterbot.util.ClassBuilder.</tt><tt class="descname">ClassBuilder</tt><a class="headerlink" href="#clusterbot.util.ClassBuilder.ClassBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">object</span></tt></p>
+<dl class="method">
+<dt id="clusterbot.util.ClassBuilder.ClassBuilder.getConstructorParameterAssignments">
+<tt class="descname">getConstructorParameterAssignments</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.util.ClassBuilder.ClassBuilder.getConstructorParameterAssignments" title="Permalink to this definition">¶</a></dt>
+<dd>Assumes the existence of a local dictionary with the name <em>args</em>.
+:returns: A statement which takes each key in <tt class="xref docutils literal"><span class="pre">parameters</span></tt> as a local variable and assigns the corresponding value of the key with the same name found in <em>args</em>.
+If there is no key with the same name in <em>args</em>, the statement assigns to it the corresponding value of <tt class="xref docutils literal"><span class="pre">parameters</span></tt> as a default value.</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.util.ClassBuilder.ClassBuilder.getConstructorParameters">
+<tt class="descname">getConstructorParameters</tt><big>(</big><em>startWithComma=False</em>, <em>withDefaultValues=False</em><big>)</big><a class="headerlink" href="#clusterbot.util.ClassBuilder.ClassBuilder.getConstructorParameters" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><em>startWithComma</em> &#8211; If True, start the returned string with a comma iff the returned string contains one or more parameters</li>
+<li><em>withDefaultValues</em> &#8211; If True, every parameter in the returned string is substituted by paramM=defaultValueM, where defaultValueM is the corresponding value found in the dictionary <tt class="xref docutils literal"><span class="pre">parameters</span></tt> storing the parameter&#8217;s names.</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A string of the form &#8216;param1,param2...paramN&#8217;, where param1 through paramN are all keys of <tt class="xref docutils literal"><span class="pre">parameters</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.util.ClassBuilder.ClassBuilder.getInstanceVariableAssignments">
+<tt class="descname">getInstanceVariableAssignments</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.util.ClassBuilder.ClassBuilder.getInstanceVariableAssignments" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">A string of the form &#8216;self.param1 = defaultValue1;nself.param2 = defaultValue2;n..self.paramN = defaultValueN;n&#8217;, where param1 through paramN are all keys of <tt class="xref docutils literal"><span class="pre">parameters</span></tt> and defaultValue1 through defaultValueN are the corresponding values.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-clusterbot.util.timer">
+<h1>The <tt class="xref docutils literal"><span class="pre">timer</span></tt> Module<a class="headerlink" href="#module-clusterbot.util.timer" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clusterbot.util.timer.Timer">
+<em class="property">class </em><tt class="descclassname">clusterbot.util.timer.</tt><tt class="descname">Timer</tt><big>(</big><em>duration=0</em><big>)</big><a class="headerlink" href="#clusterbot.util.timer.Timer" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="clusterbot.util.timer.Timer.refreshTimer">
+<tt class="descname">refreshTimer</tt><big>(</big><em>duration</em><big>)</big><a class="headerlink" href="#clusterbot.util.timer.Timer.refreshTimer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.util.timer.Timer.rings">
+<tt class="descname">rings</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.util.timer.Timer.rings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-clusterbot.util.MyXMLReader">
+<h1>The <tt class="xref docutils literal"><span class="pre">MyXMLReader</span></tt> Module<a class="headerlink" href="#module-clusterbot.util.MyXMLReader" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clusterbot.util.MyXMLReader.MyXMLReader">
+<em class="property">class </em><tt class="descclassname">clusterbot.util.MyXMLReader.</tt><tt class="descname">MyXMLReader</tt><big>(</big><em>xmlfile</em><big>)</big><a class="headerlink" href="#clusterbot.util.MyXMLReader.MyXMLReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">xml.sax.handler.ContentHandler</span></tt></p>
+<dl class="method">
+<dt id="clusterbot.util.MyXMLReader.MyXMLReader.getAttribute">
+<tt class="descname">getAttribute</tt><big>(</big><em>tagname</em>, <em>attributeName</em><big>)</big><a class="headerlink" href="#clusterbot.util.MyXMLReader.MyXMLReader.getAttribute" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">the value of the attribute &lt;code&gt;attributeName&lt;/code&gt; in the tag &lt;code&gt;tagname&lt;/code&gt; or a list of such values</td>
+</tr>
+<tr class="field"><th class="field-name">Raises:</th><td class="field-body">ValueError: if the tagname, attributeName combination was not found</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.util.MyXMLReader.MyXMLReader.hasAttribute">
+<tt class="descname">hasAttribute</tt><big>(</big><em>tagname</em>, <em>attributeName</em><big>)</big><a class="headerlink" href="#clusterbot.util.MyXMLReader.MyXMLReader.hasAttribute" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">True iff if the tagname, attributeName combination was not found</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.util.MyXMLReader.MyXMLReader.startElement">
+<tt class="descname">startElement</tt><big>(</big><em>tagname</em>, <em>attrs</em><big>)</big><a class="headerlink" href="#clusterbot.util.MyXMLReader.MyXMLReader.startElement" title="Permalink to this definition">¶</a></dt>
+<dd>Called for every tag in the xml file
+Creates the dictionary self.tags which might have a dictionary of attribute-value-pairs or a list thereof.</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">The <tt class="docutils literal"><span class="pre">string</span></tt> Module</a></li>
+<li><a class="reference external" href="#module-clusterbot.util.ClassBuilder">The <tt class="docutils literal"><span class="pre">ClassBuilder</span></tt> Module</a></li>
+<li><a class="reference external" href="#module-clusterbot.util.timer">The <tt class="docutils literal"><span class="pre">timer</span></tt> Module</a></li>
+<li><a class="reference external" href="#module-clusterbot.util.MyXMLReader">The <tt class="docutils literal"><span class="pre">MyXMLReader</span></tt> Module</a></li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="tests.html"
+                                  title="previous chapter">The <tt class="docutils literal docutils literal docutils literal"><span class="pre">EventDrivenShellClusterBotTest</span></tt> Module</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/util.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests.html" title="The EventDrivenShellClusterBotTest Module"
+             >previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" >Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2011, Johannes Müller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>

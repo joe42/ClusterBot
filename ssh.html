@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The ssh Module &mdash; Clusterbot v0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.7',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Clusterbot v0.7 documentation" href="index.html" />
+    <link rel="up" title="Developers documentation" href="develop.html" />
+    <link rel="next" title="The EventDrivenShellClusterBotTest Module" href="tests.html" />
+    <link rel="prev" title="The myconsole Module" href="shell.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="tests.html" title="The EventDrivenShellClusterBotTest Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="shell.html" title="The myconsole Module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" accesskey="U">Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-clusterbot.ssh">
+<h1>The <tt class="xref docutils literal"><span class="pre">ssh</span></tt> Module<a class="headerlink" href="#module-clusterbot.ssh" title="Permalink to this headline">¶</a></h1>
+<p>This module allows execution of commands via ssh, and scp.</p>
+<p><a href="#id1"><span class="problematic" id="id2">*</span></a>nix only because of ptys</p>
+<dl class="exception">
+<dt id="clusterbot.ssh.ConnectError">
+<em class="property">exception </em><tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">ConnectError</tt><big>(</big><em>strerror=''</em>, <em>host=''</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.ConnectError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a title="clusterbot.ssh.Error" class="reference internal" href="#clusterbot.ssh.Error"><tt class="xref docutils literal"><span class="pre">clusterbot.ssh.Error</span></tt></a></p>
+<p>Exception raised when connection to given host fails.</p>
+<p>strerror &#8211; message
+host &#8211; host to connect to</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="clusterbot.ssh.Error">
+<em class="property">exception </em><tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">Error</tt><big>(</big><em>strerror=''</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.Error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<p>Base class for exceptions in this module.</p>
+<p>strerror &#8211; message</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="clusterbot.ssh.ROSError">
+<em class="property">exception </em><tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">ROSError</tt><big>(</big><em>strerror=''</em>, <em>filename=''</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.ROSError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a title="clusterbot.ssh.Error" class="reference internal" href="#clusterbot.ssh.Error"><tt class="xref docutils literal"><span class="pre">clusterbot.ssh.Error</span></tt></a></p>
+<p>Exception raised when the execution of a remote command failed.</p>
+<p>strerror &#8211; message
+filename &#8211; filename</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="clusterbot.ssh.TimeOutError">
+<em class="property">exception </em><tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">TimeOutError</tt><big>(</big><em>strerror</em>, <em>read</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.TimeOutError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a title="clusterbot.ssh.Error" class="reference internal" href="#clusterbot.ssh.Error"><tt class="xref docutils literal"><span class="pre">clusterbot.ssh.Error</span></tt></a></p>
+<p>Exception raised when read() times out.</p>
+<p>strerror &#8211; message
+read &#8211; string read so far</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="clusterbot.ssh.UIDError">
+<em class="property">exception </em><tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">UIDError</tt><big>(</big><em>strerror=''</em>, <em>user=''</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.UIDError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a title="clusterbot.ssh.Error" class="reference internal" href="#clusterbot.ssh.Error"><tt class="xref docutils literal"><span class="pre">clusterbot.ssh.Error</span></tt></a></p>
+<p>Exception raised when authentication of the user fails.</p>
+<p>strerror &#8211; message
+user &#8211; login name</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.execute">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">execute</tt><big>(</big><em>tty</em>, <em>command</em>, <em>timeout=10</em>, <em>prompts=</em><span class="optional">[</span>, <em>'__very__unique__prompt__'</em><span class="optional">]</span>, <em>rm_esc_seq=True</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute command in the remote shell and return it&#8217;s output.
+Raise an Exception on timeout and on recognized error messages.</p>
+<dl class="docutils">
+<dt>tty &#8211; file descriptor of the conrolling pseudoterminal of the</dt>
+<dd>remote shell</dd>
+</dl>
+<p>command &#8211; command to be executed
+timeout &#8211; timeout applied when trying to read one(!) character
+prompts &#8211; list of prompts expected at the end ot the output,</p>
+<blockquote>
+shouldn&#8217;t be set if connetcion was established with
+rlogin</blockquote>
+<p>rm_esc_seq &#8211; if True, remove graphical escape sequences from output</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.expect">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">expect</tt><big>(</big><em>tty</em>, <em>exp_strings</em>, <em>ignore=''</em>, <em>timeout=10</em>, <em>raise_timeout=True</em>, <em>raise_os=True</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.expect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read from file descriptor &#8216;tty&#8217; until one of the strings in 
+&#8216;exp_strings&#8217; is found or the attempt to read times out.</p>
+<p>tty &#8211; file descriptor
+exp_strings &#8211; list of strings
+ignore &#8211; string of characters which are ignored while reading
+timeout &#8211; timeout applied when trying to read one(!) character
+prompts &#8211; list of prompts expected at the end ot the output,</p>
+<blockquote>
+shouldn&#8217;t be set if connetcion was established with
+rlogin</blockquote>
+<dl class="docutils">
+<dt>raise_timeout &#8211; If True, a TimeOutError is raised when a read times</dt>
+<dd>out. Otherwise, the string read so far is returned.</dd>
+<dt>raise_os &#8211; If True, an OSError is raised when encountering promblems</dt>
+<dd>with the file descriptor tty (e.g. child died). Otherwise,
+the string read so far is returned.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.find_prompt">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">find_prompt</tt><big>(</big><em>tty</em>, <em>timeout=10</em>, <em>prompts=</em><span class="optional">[</span>, <em>'__very__unique__prompt__'</em><span class="optional">]</span>, <em>max_tries=10</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.find_prompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8216;expect&#8217;-ing the prompt can go wrong if the pompt searched for is
+not unique and can be found in normal output. find_prompt implements
+a safer way to identify the prompt.</p>
+<p>If logging in via rlogin, there should be no need to call this function
+manually (unless something gets totally weird.)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rabspath">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rabspath</tt><big>(</big><em>tty</em>, <em>dirfile</em>, <em>timeout=10</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.rabspath" title="Permalink to this definition">¶</a></dt>
+<dd>Like os.abspath.</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.ranycmd">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">ranycmd</tt><big>(</big><em>tty</em>, <em>cmd</em>, <em>timeout=10</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.ranycmd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute any kind of shell command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><em>tty</em> &#8211; file descriptor</li>
+<li><em>cmd</em> &#8211; shell command as string</li>
+<li><em>timeout</em> &#8211; timeout applied when trying to read one(!) character</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rcatfile">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rcatfile</tt><big>(</big><em>tty</em>, <em>rfile</em>, <em>timeout=10</em>, <em>indicators=</em><span class="optional">[</span>, <em>'*'</em>, <em>'&#64;'</em>, <em>'/'</em>, <em>'='</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#clusterbot.ssh.rcatfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like &#8220;&gt;&gt;cat rfile&#8221;.</p>
+<p>tty &#8211; file descriptor
+rfile &#8211; remote file
+timeout &#8211; timeout applied when trying to read one(!) character
+indicators &#8211; list of special characters which are to be removed</p>
+<blockquote>
+from the end of the filenenames, like &#8220;*&#8221; or &#8220;&#64;&#8221;
+(some implementations of ls use those to indicate
+executable files or soft links)</blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rchmod">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rchmod</tt><big>(</big><em>tty</em>, <em>dirfile</em>, <em>mode</em>, <em>timeout=10</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.rchmod" title="Permalink to this definition">¶</a></dt>
+<dd>Like os.chmod, only that &#8216;mode&#8217; is given as numeric value like in
+the Unix command chmod. (For example, to set read, write and execute
+permissions for the user and read permissions for the group and others,
+use 744.)</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.readline">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">readline</tt><big>(</big><em>tty</em>, <em>timeout=10</em>, <em>raise_timeout=True</em>, <em>raise_os=True</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.readline" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<p>Read a line from the file descriptor &#8216;tty&#8217;. Return value is the line
+without the line seperator on success, otherwise a TimeOutError
+is raised.</p>
+<p>Line separators are</p>
+</blockquote>
+<dl class="docutils">
+<dt>, </dt>
+<dd>and</dd>
+</dl>
+<p>.</p>
+<blockquote>
+<p>tty &#8211; file descriptor
+timeout &#8211; timeout applied when trying to read one(!) character
+raise_timeout &#8211; If True, a TimeOutError is raised when a read times</p>
+<blockquote>
+out. Otherwise, the string read so far is returned.</blockquote>
+<dl class="docutils">
+<dt>raise_os &#8211; If True, an OSError is raised when encountering promblems</dt>
+<dd>with the file descriptor tty (e.g. child died). Otherwise,
+the string read so far is returned.</dd>
+</dl>
+</blockquote>
+</dd></dl>
+
+<dl class="class">
+<dt id="clusterbot.ssh.rfile">
+<em class="property">class </em><tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rfile</tt><big>(</big><em>passwd</em>, <em>rfile</em>, <em>mode='r'</em>, <em>bufsize=-1</em>, <em>timeout=10</em>, <em>passwds=</em><span class="optional">[</span>, <em>'password: '</em>, <em>'Password: '</em>, <em>'passphrase:'</em>, <em>'Passphrase:'</em><span class="optional">]</span>, <em>errors=</em><span class="optional">[</span>, <em>'Operation not permitted'</em>, <em>'No such file or directory'</em>, <em>'No such process'</em>, <em>'Interrupted system call'</em>, <em>'Input/output error'</em>, <em>'No such device or address'</em>, <em>'Argument list too long'</em>, <em>'Exec format error'</em>, <em>'Bad file descriptor'</em>, <em>'No child processes'</em>, <em>'Resource temporarily unavailable'</em>, <em>'Cannot allocate memory'</em>, <em>'Permission denied'</em>, <em>'Bad address'</em>, <em>'Block device required'</em>, <em>'Device or resource busy'</em>, <em>'File exists'</em>, <em>'Invalid cross-device link'</em>, <em>'No such device'</em>, <em>'Not a directory'</em>, <em>'Is a directory'</em>, <em>'Invalid argument'</em>, <em>'Too many open files in system'</em>, <em>'Too many open files'</em>, <em>'Inappropriate ioctl for device'</em>, <em>'Text file busy'</em>, <em>'File too large'</em>, <em>'No space left on device'</em>, <em>'Illegal seek'</em>, <em>'Read-only file system'</em>, <em>'Too many links'</em>, <em>'Broken pipe'</em>, <em>'Numerical argument out of domain'</em>, <em>'Numerical result out of range'</em>, <em>'Resource deadlock avoided'</em>, <em>'File name too long'</em>, <em>'No locks available'</em>, <em>'Function not implemented'</em>, <em>'Directory not empty'</em>, <em>'Too many levels of symbolic links'</em>, <em>'No message of desired type'</em>, <em>'Identifier removed'</em>, <em>'Channel number out of range'</em>, <em>'Level 2 not synchronized'</em>, <em>'Level 3 halted'</em>, <em>'Level 3 reset'</em>, <em>'Link number out of range'</em>, <em>'Protocol driver not attached'</em>, <em>'No CSI structure available'</em>, <em>'Level 2 halted'</em>, <em>'Invalid exchange'</em>, <em>'Invalid request descriptor'</em>, <em>'Exchange full'</em>, <em>'No anode'</em>, <em>'Invalid request code'</em>, <em>'Invalid slot'</em>, <em>'Bad font file format'</em>, <em>'Device not a stream'</em>, <em>'No data available'</em>, <em>'Timer expired'</em>, <em>'Out of streams resources'</em>, <em>'Machine is not on the network'</em>, <em>'Package not installed'</em>, <em>'Object is remote'</em>, <em>'Link has been severed'</em>, <em>'Advertise error'</em>, <em>'Srmount error'</em>, <em>'Communication error on send'</em>, <em>'Protocol error'</em>, <em>'Multihop attempted'</em>, <em>'RFS specific error'</em>, <em>'Bad message'</em>, <em>'Value too large for defined data type'</em>, <em>'Name not unique on network'</em>, <em>'File descriptor in bad state'</em>, <em>'Remote address changed'</em>, <em>'Can not access a needed shared library'</em>, <em>'Accessing a corrupted shared library'</em>, <em>'.lib section in a.out corrupted'</em>, <em>'Attempting to link in too many shared libraries'</em>, <em>'Cannot exec a shared library directly'</em>, <em>'Invalid or incomplete multibyte or wide character'</em>, <em>'Interrupted system call should be restarted'</em>, <em>'Streams pipe error'</em>, <em>'Too many users'</em>, <em>'Socket operation on non-socket'</em>, <em>'Destination address required'</em>, <em>'Message too long'</em>, <em>'Protocol wrong type for socket'</em>, <em>'Protocol not available'</em>, <em>'Protocol not supported'</em>, <em>'Socket type not supported'</em>, <em>'Operation not supported'</em>, <em>'Protocol family not supported'</em>, <em>'Address family not supported by protocol'</em>, <em>'Address already in use'</em>, <em>'Cannot assign requested address'</em>, <em>'Network is down'</em>, <em>'Network is unreachable'</em>, <em>'Network dropped connection on reset'</em>, <em>'Software caused connection abort'</em>, <em>'Connection reset by peer'</em>, <em>'No buffer space available'</em>, <em>'Transport endpoint is already connected'</em>, <em>'Transport endpoint is not connected'</em>, <em>'Cannot send after transport endpoint shutdown'</em>, <em>'Too many references: cannot splice'</em>, <em>'Connection timed out'</em>, <em>'Connection refused'</em>, <em>'Host is down'</em>, <em>'No route to host'</em>, <em>'Operation already in progress'</em>, <em>'Operation now in progress'</em>, <em>'Stale NFS file handle'</em>, <em>'Structure needs cleaning'</em>, <em>'Not a XENIX named type file'</em>, <em>'No XENIX semaphores available'</em>, <em>'Is a named type file'</em>, <em>'Remote I/O error'</em>, <em>'Disk quota exceeded'</em>, <em>'Name or service not known'</em>, <em>'Temporary failure in name resolution'</em>, <em>'does not exist'</em>, <em>'not found'</em>, <em>'Directory not empty'</em>, <em>'cannot remove directory'</em>, <em>'Not owner'</em>, <em>'invalid mode'</em>, <em>'invalid argument'</em><span class="optional">]</span>, <em>continues=</em><span class="optional">[</span>, <em>'(yes/no)?'</em>, <em>'(y/n)?'</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#clusterbot.ssh.rfile" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="clusterbot.ssh.rfile.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.ssh.rfile.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the file.</p>
+<p>If the file was opened for writing, the modified local file will be
+copied back to it&#8217;s origin via scp.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.risdir">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">risdir</tt><big>(</big><em>tty</em>, <em>dirfile</em>, <em>timeout=10</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.risdir" title="Permalink to this definition">¶</a></dt>
+<dd>Like os.path.isdir.</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.risfile">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">risfile</tt><big>(</big><em>tty</em>, <em>dirfile</em>, <em>timeout=10</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.risfile" title="Permalink to this definition">¶</a></dt>
+<dd>Like os.path.isfile.</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rlistdir">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rlistdir</tt><big>(</big><em>tty</em>, <em>rdir</em>, <em>timeout=10</em>, <em>indicators=</em><span class="optional">[</span>, <em>'*'</em>, <em>'&#64;'</em>, <em>'/'</em>, <em>'='</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#clusterbot.ssh.rlistdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like os.listdir.</p>
+<p>tty &#8211; file descriptor
+rdir &#8211; remote direcory
+timeout &#8211; timeout applied when trying to read one(!) character
+indicators &#8211; list of special characters which are to be removed</p>
+<blockquote>
+from the end of the filenenames, like &#8220;*&#8221; or &#8220;&#64;&#8221;
+(some implementations of ls use those to indicate
+executable files or soft links)</blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rlogin">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rlogin</tt><big>(</big><em>host</em>, <em>user</em>, <em>passwd</em>, <em>timeout=10</em>, <em>init_prompts=</em><span class="optional">[</span>, <em>'&gt; '</em>, <em>'# '</em>, <em>'$ '</em><span class="optional">]</span>, <em>passwds=</em><span class="optional">[</span>, <em>'password: '</em>, <em>'Password: '</em>, <em>'passphrase:'</em>, <em>'Passphrase:'</em><span class="optional">]</span>, <em>errors=</em><span class="optional">[</span>, <em>'Operation not permitted'</em>, <em>'No such file or directory'</em>, <em>'No such process'</em>, <em>'Interrupted system call'</em>, <em>'Input/output error'</em>, <em>'No such device or address'</em>, <em>'Argument list too long'</em>, <em>'Exec format error'</em>, <em>'Bad file descriptor'</em>, <em>'No child processes'</em>, <em>'Resource temporarily unavailable'</em>, <em>'Cannot allocate memory'</em>, <em>'Permission denied'</em>, <em>'Bad address'</em>, <em>'Block device required'</em>, <em>'Device or resource busy'</em>, <em>'File exists'</em>, <em>'Invalid cross-device link'</em>, <em>'No such device'</em>, <em>'Not a directory'</em>, <em>'Is a directory'</em>, <em>'Invalid argument'</em>, <em>'Too many open files in system'</em>, <em>'Too many open files'</em>, <em>'Inappropriate ioctl for device'</em>, <em>'Text file busy'</em>, <em>'File too large'</em>, <em>'No space left on device'</em>, <em>'Illegal seek'</em>, <em>'Read-only file system'</em>, <em>'Too many links'</em>, <em>'Broken pipe'</em>, <em>'Numerical argument out of domain'</em>, <em>'Numerical result out of range'</em>, <em>'Resource deadlock avoided'</em>, <em>'File name too long'</em>, <em>'No locks available'</em>, <em>'Function not implemented'</em>, <em>'Directory not empty'</em>, <em>'Too many levels of symbolic links'</em>, <em>'No message of desired type'</em>, <em>'Identifier removed'</em>, <em>'Channel number out of range'</em>, <em>'Level 2 not synchronized'</em>, <em>'Level 3 halted'</em>, <em>'Level 3 reset'</em>, <em>'Link number out of range'</em>, <em>'Protocol driver not attached'</em>, <em>'No CSI structure available'</em>, <em>'Level 2 halted'</em>, <em>'Invalid exchange'</em>, <em>'Invalid request descriptor'</em>, <em>'Exchange full'</em>, <em>'No anode'</em>, <em>'Invalid request code'</em>, <em>'Invalid slot'</em>, <em>'Bad font file format'</em>, <em>'Device not a stream'</em>, <em>'No data available'</em>, <em>'Timer expired'</em>, <em>'Out of streams resources'</em>, <em>'Machine is not on the network'</em>, <em>'Package not installed'</em>, <em>'Object is remote'</em>, <em>'Link has been severed'</em>, <em>'Advertise error'</em>, <em>'Srmount error'</em>, <em>'Communication error on send'</em>, <em>'Protocol error'</em>, <em>'Multihop attempted'</em>, <em>'RFS specific error'</em>, <em>'Bad message'</em>, <em>'Value too large for defined data type'</em>, <em>'Name not unique on network'</em>, <em>'File descriptor in bad state'</em>, <em>'Remote address changed'</em>, <em>'Can not access a needed shared library'</em>, <em>'Accessing a corrupted shared library'</em>, <em>'.lib section in a.out corrupted'</em>, <em>'Attempting to link in too many shared libraries'</em>, <em>'Cannot exec a shared library directly'</em>, <em>'Invalid or incomplete multibyte or wide character'</em>, <em>'Interrupted system call should be restarted'</em>, <em>'Streams pipe error'</em>, <em>'Too many users'</em>, <em>'Socket operation on non-socket'</em>, <em>'Destination address required'</em>, <em>'Message too long'</em>, <em>'Protocol wrong type for socket'</em>, <em>'Protocol not available'</em>, <em>'Protocol not supported'</em>, <em>'Socket type not supported'</em>, <em>'Operation not supported'</em>, <em>'Protocol family not supported'</em>, <em>'Address family not supported by protocol'</em>, <em>'Address already in use'</em>, <em>'Cannot assign requested address'</em>, <em>'Network is down'</em>, <em>'Network is unreachable'</em>, <em>'Network dropped connection on reset'</em>, <em>'Software caused connection abort'</em>, <em>'Connection reset by peer'</em>, <em>'No buffer space available'</em>, <em>'Transport endpoint is already connected'</em>, <em>'Transport endpoint is not connected'</em>, <em>'Cannot send after transport endpoint shutdown'</em>, <em>'Too many references: cannot splice'</em>, <em>'Connection timed out'</em>, <em>'Connection refused'</em>, <em>'Host is down'</em>, <em>'No route to host'</em>, <em>'Operation already in progress'</em>, <em>'Operation now in progress'</em>, <em>'Stale NFS file handle'</em>, <em>'Structure needs cleaning'</em>, <em>'Not a XENIX named type file'</em>, <em>'No XENIX semaphores available'</em>, <em>'Is a named type file'</em>, <em>'Remote I/O error'</em>, <em>'Disk quota exceeded'</em>, <em>'Name or service not known'</em>, <em>'Temporary failure in name resolution'</em>, <em>'does not exist'</em>, <em>'not found'</em>, <em>'Directory not empty'</em>, <em>'cannot remove directory'</em>, <em>'Not owner'</em>, <em>'invalid mode'</em>, <em>'invalid argument'</em><span class="optional">]</span>, <em>continues=</em><span class="optional">[</span>, <em>'(yes/no)?'</em>, <em>'(y/n)?'</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#clusterbot.ssh.rlogin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a login on the remote host via ssh. Return value is the tuple
+(pid, tty), which contains the pid of the ssh-process and a file descriptor
+which represents a pseudo terminal controlling the remote shell.</p>
+<p>Internals: To make working with the tty more sane, rlogin changes the shell
+prompt and the LANG environment variable.</p>
+<p>host &#8211; hostname or IP adress
+user &#8211; login name
+passwd &#8211; password
+timeout &#8211; timeout applied when trying to read one(!) character
+init_prompts &#8211; list of shell prompts which are expected at the end of</p>
+<blockquote>
+the login procedure</blockquote>
+<p>passwds &#8211; list of password prompts which are expected 
+errors &#8211; list of error messages which are expected 
+continues &#8211; list of &#8220;Are you sure want to continue&#8221; prompts which are</p>
+<blockquote>
+expected</blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rlogout">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rlogout</tt><big>(</big><em>tty</em>, <em>timeout=10</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.rlogout" title="Permalink to this definition">¶</a></dt>
+<dd>End remote session.</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rmkdir">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rmkdir</tt><big>(</big><em>tty</em>, <em>rdir</em>, <em>timeout=10</em>, <em>mode=755</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.rmkdir" title="Permalink to this definition">¶</a></dt>
+<dd>Like os.mkdir.</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rpwd">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rpwd</tt><big>(</big><em>tty</em>, <em>timeout=10</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.rpwd" title="Permalink to this definition">¶</a></dt>
+<dd>Get working directory of the remote shell.</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rremove">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rremove</tt><big>(</big><em>tty</em>, <em>rfile</em>, <em>timeout=10</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.rremove" title="Permalink to this definition">¶</a></dt>
+<dd>Like os.remove.</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rrename">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rrename</tt><big>(</big><em>tty</em>, <em>src</em>, <em>dest</em>, <em>timeout=10</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.rrename" title="Permalink to this definition">¶</a></dt>
+<dd>Like os.remove.</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rrmdir">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rrmdir</tt><big>(</big><em>tty</em>, <em>rdir</em>, <em>timeout=10</em><big>)</big><a class="headerlink" href="#clusterbot.ssh.rrmdir" title="Permalink to this definition">¶</a></dt>
+<dd>Like os.rmdir.</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.rsensors">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">rsensors</tt><big>(</big><em>tty</em>, <em>hostlist</em>, <em>timeout=10</em>, <em>indicators=</em><span class="optional">[</span>, <em>'*'</em>, <em>'&#64;'</em>, <em>'/'</em>, <em>'='</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#clusterbot.ssh.rsensors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like sensors.</p>
+<p>tty &#8211; file descriptor
+hostlist &#8211; list of hosts to execute sensors on
+timeout &#8211; timeout applied when trying to read one(!) character
+indicators &#8211; list of special characters which are to be removed</p>
+<blockquote>
+from the end of the filenenames, like &#8220;*&#8221; or &#8220;&#64;&#8221;
+(some implementations of ls use those to indicate
+executable files or soft links)</blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.ssh.scp">
+<tt class="descclassname">clusterbot.ssh.</tt><tt class="descname">scp</tt><big>(</big><em>passwd</em>, <em>src</em>, <em>dest</em>, <em>timeout=10</em>, <em>passwds=</em><span class="optional">[</span>, <em>'password: '</em>, <em>'Password: '</em>, <em>'passphrase:'</em>, <em>'Passphrase:'</em><span class="optional">]</span>, <em>errors=</em><span class="optional">[</span>, <em>'Operation not permitted'</em>, <em>'No such file or directory'</em>, <em>'No such process'</em>, <em>'Interrupted system call'</em>, <em>'Input/output error'</em>, <em>'No such device or address'</em>, <em>'Argument list too long'</em>, <em>'Exec format error'</em>, <em>'Bad file descriptor'</em>, <em>'No child processes'</em>, <em>'Resource temporarily unavailable'</em>, <em>'Cannot allocate memory'</em>, <em>'Permission denied'</em>, <em>'Bad address'</em>, <em>'Block device required'</em>, <em>'Device or resource busy'</em>, <em>'File exists'</em>, <em>'Invalid cross-device link'</em>, <em>'No such device'</em>, <em>'Not a directory'</em>, <em>'Is a directory'</em>, <em>'Invalid argument'</em>, <em>'Too many open files in system'</em>, <em>'Too many open files'</em>, <em>'Inappropriate ioctl for device'</em>, <em>'Text file busy'</em>, <em>'File too large'</em>, <em>'No space left on device'</em>, <em>'Illegal seek'</em>, <em>'Read-only file system'</em>, <em>'Too many links'</em>, <em>'Broken pipe'</em>, <em>'Numerical argument out of domain'</em>, <em>'Numerical result out of range'</em>, <em>'Resource deadlock avoided'</em>, <em>'File name too long'</em>, <em>'No locks available'</em>, <em>'Function not implemented'</em>, <em>'Directory not empty'</em>, <em>'Too many levels of symbolic links'</em>, <em>'No message of desired type'</em>, <em>'Identifier removed'</em>, <em>'Channel number out of range'</em>, <em>'Level 2 not synchronized'</em>, <em>'Level 3 halted'</em>, <em>'Level 3 reset'</em>, <em>'Link number out of range'</em>, <em>'Protocol driver not attached'</em>, <em>'No CSI structure available'</em>, <em>'Level 2 halted'</em>, <em>'Invalid exchange'</em>, <em>'Invalid request descriptor'</em>, <em>'Exchange full'</em>, <em>'No anode'</em>, <em>'Invalid request code'</em>, <em>'Invalid slot'</em>, <em>'Bad font file format'</em>, <em>'Device not a stream'</em>, <em>'No data available'</em>, <em>'Timer expired'</em>, <em>'Out of streams resources'</em>, <em>'Machine is not on the network'</em>, <em>'Package not installed'</em>, <em>'Object is remote'</em>, <em>'Link has been severed'</em>, <em>'Advertise error'</em>, <em>'Srmount error'</em>, <em>'Communication error on send'</em>, <em>'Protocol error'</em>, <em>'Multihop attempted'</em>, <em>'RFS specific error'</em>, <em>'Bad message'</em>, <em>'Value too large for defined data type'</em>, <em>'Name not unique on network'</em>, <em>'File descriptor in bad state'</em>, <em>'Remote address changed'</em>, <em>'Can not access a needed shared library'</em>, <em>'Accessing a corrupted shared library'</em>, <em>'.lib section in a.out corrupted'</em>, <em>'Attempting to link in too many shared libraries'</em>, <em>'Cannot exec a shared library directly'</em>, <em>'Invalid or incomplete multibyte or wide character'</em>, <em>'Interrupted system call should be restarted'</em>, <em>'Streams pipe error'</em>, <em>'Too many users'</em>, <em>'Socket operation on non-socket'</em>, <em>'Destination address required'</em>, <em>'Message too long'</em>, <em>'Protocol wrong type for socket'</em>, <em>'Protocol not available'</em>, <em>'Protocol not supported'</em>, <em>'Socket type not supported'</em>, <em>'Operation not supported'</em>, <em>'Protocol family not supported'</em>, <em>'Address family not supported by protocol'</em>, <em>'Address already in use'</em>, <em>'Cannot assign requested address'</em>, <em>'Network is down'</em>, <em>'Network is unreachable'</em>, <em>'Network dropped connection on reset'</em>, <em>'Software caused connection abort'</em>, <em>'Connection reset by peer'</em>, <em>'No buffer space available'</em>, <em>'Transport endpoint is already connected'</em>, <em>'Transport endpoint is not connected'</em>, <em>'Cannot send after transport endpoint shutdown'</em>, <em>'Too many references: cannot splice'</em>, <em>'Connection timed out'</em>, <em>'Connection refused'</em>, <em>'Host is down'</em>, <em>'No route to host'</em>, <em>'Operation already in progress'</em>, <em>'Operation now in progress'</em>, <em>'Stale NFS file handle'</em>, <em>'Structure needs cleaning'</em>, <em>'Not a XENIX named type file'</em>, <em>'No XENIX semaphores available'</em>, <em>'Is a named type file'</em>, <em>'Remote I/O error'</em>, <em>'Disk quota exceeded'</em>, <em>'Name or service not known'</em>, <em>'Temporary failure in name resolution'</em>, <em>'does not exist'</em>, <em>'not found'</em>, <em>'Directory not empty'</em>, <em>'cannot remove directory'</em>, <em>'Not owner'</em>, <em>'invalid mode'</em>, <em>'invalid argument'</em><span class="optional">]</span>, <em>continues=</em><span class="optional">[</span>, <em>'(yes/no)?'</em>, <em>'(y/n)?'</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#clusterbot.ssh.scp" title="Permalink to this definition">¶</a></dt>
+<dd><p>On success, returns output of scp.</p>
+<p>passwd &#8211; password
+src &#8211; source file of the form [[user&#64;]host:]file
+dest &#8211; destination file of the form [[user&#64;]host:]file
+timeout &#8211; timeout applied when trying to read one(!) character
+passwds &#8211; list of password prompts which are expected
+errors &#8211; list of error messages which are expected
+continues &#8211; list of &#8220;Are you sure want to conitnue&#8221; prompts which are</p>
+<blockquote>
+expected</blockquote>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="shell.html"
+                                  title="previous chapter">The <tt class="docutils literal docutils literal docutils literal"><span class="pre">myconsole</span></tt> Module</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="tests.html"
+                                  title="next chapter">The <tt class="docutils literal"><span class="pre">EventDrivenShellClusterBotTest</span></tt> Module</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/ssh.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests.html" title="The EventDrivenShellClusterBotTest Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="shell.html" title="The myconsole Module"
+             >previous</a> |</li>
+        <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
+          <li><a href="develop.html" >Developers documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2011, Johannes Müller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>

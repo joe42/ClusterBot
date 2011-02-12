@@ -1,0 +1,7 @@
+The :mod:`main` Module
+----------------------
+
+.. automodule:: clusterbot.main
+    :members:
+    :undoc-members:
+    :show-inheritance:

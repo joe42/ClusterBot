@@ -1,0 +1,7 @@
+The :mod:`ShellClusterBot` Module
+---------------------------------
+
+.. automodule:: clusterbot.ShellClusterBot
+    :members:
+    :undoc-members:
+    :show-inheritance:
