@@ -19,7 +19,7 @@ class ClusterBot(JabberBot):
 		self.headnodeIP = headnodeIP;
 		self.headnodeUser = headnodeUser;
 		self.headnodePW = headnodePW;
-		self.allowedJIDs = allowedJIDs
+		self.allowedJIDs = allowedJIDs.append(jabberID)#don't ignore messages from self
 		self.__pid = None
 		self._tty = None
 		if None in [jabberID, jabberPW]:
