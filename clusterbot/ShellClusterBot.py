@@ -53,20 +53,20 @@ class ShellClusterBot(ClusterBot):
         if not jid in self.shells:
             return
         
-        self.debug("Shell command: %s" % text)
+        self.log.debug("Shell command: %s" % text)
         if self.shells[jid].hasTerminated():
             self.shells.pop(jid)
             return
         
         if type not in ("groupchat", "chat"):
-            self.debug("unhandled message type: %s" % type)
+            self.log.debug("unhandled message type: %s" % type)
             return
         
-        self.debug("*** props = %s" % props)
-        self.debug("*** jid = %s" % jid)
-        self.debug("*** username = %s" % username)
-        self.debug("*** type = %s" % type)
-        self.debug("*** text = %s" % text)
+        self.log.debug("*** props = %s" % props)
+        self.log.debug("*** jid = %s" % jid)
+        self.log.debug("*** username = %s" % username)
+        self.log.debug("*** type = %s" % type)
+        self.log.debug("*** text = %s" % text)
         
         # If a message format is not supported (eg. encrypted), txt will be None
         if not text: return

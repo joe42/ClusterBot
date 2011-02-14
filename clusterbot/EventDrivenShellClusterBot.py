@@ -26,7 +26,7 @@ class EventDrivenShellClusterBot(ShellClusterBot):
     def connect_callback(self):
         """Overwrites :meth:`clusterbot.ShellClusterBot.ShellClusterBot.connect_callback` to start event polling at connection time."""
         super( EventDrivenShellClusterBot, self ).connect_callback();
-        self.debug("Registering handler for event polling.")
+        self.log.debug("Registering handler for event polling.")
         self.__startEventPollingThread()
     
     def __killEventPollingThread(self):
@@ -142,9 +142,9 @@ class EventDrivenShellClusterBot(ShellClusterBot):
             for name in self.events:
                 event = self.events[name];
                 observers = event.getObservers()
-                self.debug("Checking event %s if it has observers and if it has triggered." % event.getName())
+                self.log.debug("Checking event %s if it has observers and if it has triggered." % event.getName())
                 if len(observers) > 0 and event.isTriggered():
-                    self.debug("Broadcasting event %s, with message: %s to %s" % (event.getName(),event.getEventMessage(),str(observers)))
+                    self.log.debug("Broadcasting event %s, with message: %s to %s" % (event.getName(),event.getEventMessage(),str(observers)))
                     self.broadcast(event.getEventMessage(), observers)
             self.eventsLock.release();
 

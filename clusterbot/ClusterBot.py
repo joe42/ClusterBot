@@ -23,10 +23,10 @@ class ClusterBot(JabberBot):
 		self.__pid = None
 		self._tty = None
 		if None in [jabberID, jabberPW]:
-			self.debug("Arguments do not supply enough information to connect to the xmpp server.")
+			self.log.warning("Arguments do not supply enough information to connect to the xmpp server.")
 			return;
 		if None in [self.headnodeIP, self.headnodeUser, self.headnodePW]:
-			self.debug("Arguments do not supply enough information to establish an ssh connection to the headnode.")
+			self.log.warning("Arguments do not supply enough information to establish an ssh connection to the headnode.")
 			return;
 		self.log.info("Logging in..."); 
 		(self.__pid, self._tty) = rlogin(self.headnodeIP, self.headnodeUser, self.headnodePW);
@@ -38,7 +38,7 @@ class ClusterBot(JabberBot):
 		"""
 		if not self.__connectionEstablished():
 			if None in [self.headnodeIP, self.headnodeUser, self.headnodePW]:
-				self.debug("Arguments do not supply enough information to establish an ssh connection to the headnode.")
+				self.log.warning("Arguments do not supply enough information to establish an ssh connection to the headnode.")
 				return;
 			self.log.info("Logging in..."); 
 			(self.__pid, self._tty) = rlogin(self.headnodeIP, self.headnodeUser, self.headnodePW);
