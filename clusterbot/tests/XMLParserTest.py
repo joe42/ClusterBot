@@ -24,7 +24,7 @@ class ExceedingCPUTempEvent2(CachedEvent):\n\
         for line in self.result:\n\
             cputemp = regSearchInt('(\d+).?.?.?.?C', line, 1);\n\
             if not None in [ cputemp ] and cputemp > 90:\n\
-                newmessage += Template('CPU temperature hit critical limit: $cputemp').safe_substitute(self.__dict__, result=self.result, cputemp=cputemp)\n\
+                newmessage += Template('CPU temperature hit critical limit: $cputemp\\n').safe_substitute(self.__dict__, result=self.result, cputemp=cputemp)\n\
                 self.setTriggered()\n\
         if self._getMessage() != newmessage:\n\
             self._setmessage(newmessage)\n\

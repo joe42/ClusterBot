@@ -1,6 +1,7 @@
 import getpass;
 from clusterbot.util.MyXMLReader import MyXMLReader
 from clusterbot.EventDrivenShellClusterBot import EventDrivenShellClusterBot
+from jabberbot import JabberBot
 import sys 
 import os
 
@@ -39,7 +40,10 @@ def getConfigurationParameters():
         if not sys.argv[2] == "usepwd":
             printUsageAndExit();
         xmlFile = sys.argv[1];
+        print "Enter Password for the ssh account:"
         headnodePW = getpass.getpass();    
+        print "Enter Password for the Jabber account:"
+        jabberPW = getpass.getpass();    
             
     config = MyXMLReader(xmlFile);
     #The defaults of "" allow for a connection via private key
@@ -59,11 +63,9 @@ def isXMLFile(file):
     
 if __name__ == "__main__":          
     headnodeIP, headnodeUser, headnodePW, jabberID, jabberPW, jabberWhitelist = getConfigurationParameters();
-    jabberID='clusterbot@jabber.org' 
-    jabberPW='123456'
-    jabberWhitelist = ["gilgamesh@jabber.ccc.de"]
     bot = None
-    print headnodeIP, headnodeUser, headnodePW
+    print "ping frequency: "+str(JabberBot.PING_FREQUENCY)
+    JabberBot.PING_FREQUENCY = 20
     try:
         bot = EventDrivenShellClusterBot(jabberID, jabberPW, jabberWhitelist, headnodeIP, headnodeUser, headnodePW, debug=True);
         bot.serve_forever(connect_callback = lambda: bot.connect_callback());

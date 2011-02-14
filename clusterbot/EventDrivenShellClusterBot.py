@@ -55,7 +55,7 @@ class EventDrivenShellClusterBot(ShellClusterBot):
                 ret = 'You are already subscribed to the event: '+args;
             else:
                 self.events[args].subscribe(user);
-                self.log( '%s subscribed to the event: %s' % (user, args));
+                self.log.info( '%s subscribed to the event: %s' % (user, args));
                 ret = 'You are now subscribed to the event: '+args;
         self.eventsLock.release();
         return ret;
@@ -70,7 +70,7 @@ class EventDrivenShellClusterBot(ShellClusterBot):
             ret = "The event %s is not available for subscription." % args;
         else:
             if self.events[args].unsubscribe(user):
-                self.log( '%s unsubscribed from the event %s.' % (user, args))
+                self.log.info( '%s unsubscribed from the event %s.' % (user, args))
                 ret = 'You are now unsubscribed from the event '+args
             else:
                 ret = 'You are not subscribed to the event '+args
@@ -96,21 +96,21 @@ class EventDrivenShellClusterBot(ShellClusterBot):
         for newmodulename in [name for _, name, _ in pkgutil.iter_modules([pkgpath])]:
             __import__("clusterbot.eventmodules."+newmodulename);
             newmodule = sys.modules["clusterbot.eventmodules."+newmodulename];
-            newevent = newmodule.returnInstance(self.__tty,args);
+            newevent = newmodule.returnInstance(self._tty,args);
             try:
                 getattr(newevent, 'getName');
             except AttributeError:
-                self.log("The extension %s does not provide the Event interface!" % newmodulename);
+                self.log.error("The extension %s does not provide the Event interface!" % newmodulename);
                 continue;
             try:
                 getattr(newmodule, 'returnInstance');
             except AttributeError,TypeError:
-                self.log("The event %s does not provide the returnInstance(__tty, args) function!" % newevent.getName());
+                self.log.error("The event %s does not provide the returnInstance(tty, args) function!" % newevent.getName());
                 continue;
             self.eventsLock.acquire();
             if newevent.getName() in self.events:
                 self.eventsLock.release();
-                self.log("The event %s already exists, please rename your extension!" % newevent.getName());
+                self.log.warning("The event %s already exists, please rename your extension!" % newevent.getName());
                 continue;
             self.events[newevent.getName()] = newevent;
             self.eventsLock.release();

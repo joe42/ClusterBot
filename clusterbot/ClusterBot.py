@@ -21,15 +21,15 @@ class ClusterBot(JabberBot):
 		self.headnodePW = headnodePW;
 		self.allowedJIDs = allowedJIDs
 		self.__pid = None
-		self.__tty = None
+		self._tty = None
 		if None in [jabberID, jabberPW]:
 			self.debug("Arguments do not supply enough information to connect to the xmpp server.")
 			return;
 		if None in [self.headnodeIP, self.headnodeUser, self.headnodePW]:
 			self.debug("Arguments do not supply enough information to establish an ssh connection to the headnode.")
 			return;
-		self.log("Logging in..."); 
-		(self.__pid, self.__tty) = rlogin(self.headnodeIP, self.headnodeUser, self.headnodePW);
+		self.log.info("Logging in..."); 
+		(self.__pid, self._tty) = rlogin(self.headnodeIP, self.headnodeUser, self.headnodePW);
 
 	@botcmd
 	def reconnect(self, mess, args):
@@ -40,15 +40,15 @@ class ClusterBot(JabberBot):
 			if None in [self.headnodeIP, self.headnodeUser, self.headnodePW]:
 				self.debug("Arguments do not supply enough information to establish an ssh connection to the headnode.")
 				return;
-			self.log("Logging in..."); 
-			(self.__pid, self.__tty) = rlogin(self.headnodeIP, self.headnodeUser, self.headnodePW);
+			self.log.info("Logging in..."); 
+			(self.__pid, self._tty) = rlogin(self.headnodeIP, self.headnodeUser, self.headnodePW);
 	
 	def __connectionEstablished(self):
 		"""Sends a simple command to the headnode to see if the connection is established.
 		:returns: True if the command was executed successfully and False otherwise. 
 		"""
 		try:
-			ranycmd(self.__tty, 'echo connection established');
+			ranycmd(self._tty, 'echo connection established');
 		except TimeOutError:
 			return False;
 		return True;
@@ -56,10 +56,10 @@ class ClusterBot(JabberBot):
 	def quit(self):
 		"""Overwrites :meth:`clusterbot.jabberbot.JabberBot.quit`."""
 		super( ClusterBot, self ).quit();
-		if not self.__tty is None:
-			rlogout(self.__tty);
+		if not self._tty is None:
+			rlogout(self._tty);
 			os.waitpid(self.__pid, 0); 
-		self.log("Logged out...");
+		self.log.info("Logged out...");
 
 	@botcmd
 	def serverinfo(self, mess, args):
@@ -68,12 +68,12 @@ class ClusterBot(JabberBot):
 	@botcmd
 	def ls(self, mess, args):
 		"""Works like ls on Linux.""" 
-		return reduce((lambda x,y: x+"\n"+y),rlistdir(self.__tty, ".")); 
+		return reduce((lambda x,y: x+"\n"+y),rlistdir(self._tty, ".")); 
 
 	@botcmd
 	def cat(self, mess, args): 
 		"""Works like cat on Linux."""
-		return reduce((lambda x,y: x+"\n"+y),rcatfile(self.__tty, mess));
+		return reduce((lambda x,y: x+"\n"+y),rcatfile(self._tty, mess));
 
 	@botcmd
 	def echo(self, mess, args): 
@@ -93,7 +93,7 @@ class ClusterBot(JabberBot):
 	@botcmd
 	def get(self, mess, args): 
 		"""Gets a few system parameters, but at the moment only get temp is allowed to view system temperatures."""
-		return reduce((lambda x,y: x+"\n"+y),rsensors(self.__tty, mess)); 
+		return reduce((lambda x,y: x+"\n"+y),rsensors(self._tty, mess)); 
 
 	@botcmd(hidden=True)
 	def holla(self, mess, args):
@@ -122,19 +122,19 @@ class ClusterBot(JabberBot):
 		for newCommandName in [name for _, name, _ in pkgutil.iter_modules([pkgpath])]:
 			__import__("clusterbot.commandmodules."+newCommandName);
 			newmodule = sys.modules["clusterbot.commandmodules."+newCommandName];
-			newCommand = newmodule.returnInstance(self.__tty,args);
+			newCommand = newmodule.returnInstance(self._tty,args);
 			try:
 				getattr(newCommand, 'executeCommand');
 			except AttributeError:
-				self.log("The extension %s does not provide the Command interface with the executeCommand(self,mess,args) method!" % newCommandName);
+				self.log.error("The extension %s does not provide the Command interface with the executeCommand(self,mess,args) method!" % newCommandName);
 				continue;
 			try:
 				getattr(newmodule, 'returnInstance');
 			except AttributeError,TypeError:
-				self.log("The command %s does not provide the returnInstance(__tty, args) function!" % newCommand.getName());
+				self.log.error("The command %s does not provide the returnInstance(_tty, args) function!" % newCommand.getName());
 				continue;
 			if newCommand.getName() in self.commands or newCommand.getName() in self.pluginCommands:
-				self.log("The command %s already exists, please rename your extension!" % newCommand.getName());
+				self.log.error("The command %s already exists, please rename your extension!" % newCommand.getName());
 				continue;
 			self.pluginCommands[newCommand.getName()] = newCommand;
 		return "Alright, use the listcommands command to get an overview on the imported modules.";

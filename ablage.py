@@ -35,5 +35,15 @@ dazu muss lediglich noch ein kommando createevent NAME ALIAS (param=value;)* hin
 7. Command-queueing ermöglichen um mehrere commandos hintereinander auszuführen  
 8. End2End verschlüsselung
 
+clusterbot/main 
+    Removed printing statement, which printed the password.
+    Set JabberBot.PING_FREQUENCY 
+clusterbot/ClusterBot.py, clusterbot/EventDrivenShellClusterBot.py
+    Adapted logging mechanism to JabberBot v.0.12 atm no backward compatibility
+Makefile
+    Added statement to html generation, to convert html hyperlinks to use static directory instead of _static for compatibility with pages-gh
+testconfig,myxmlreadertest
+    Replaced
+
 jabber -> Jabber
 clusterbot -> ClusterBot

@@ -8,8 +8,7 @@ Following these steps sets up a client for interacting with the clusterbot servi
 
  1. Downloading an Instant Messenger which supports XMPP (Extensible Messaging and Presence Protocol) formerly known as jabber.
  2. Registering an account.
- 3. Askig the administrator of the clusterbot service to put the accounts jabber id on the whitelist. 
-This allows for adding the clusterbot service like any other contact within the Instant Messenger.
+ 3. Askig the administrator of the clusterbot service to put the accounts jabber id on the whitelist. This allows for adding the clusterbot service like any other contact within the Instant Messenger.
  4. Asking the administrator for the jabber id, under which the clusterbot service is registered.
  5. Adding the supplied jabber id as a contact to the Instant Messenger.
 
@@ -35,6 +34,7 @@ After typing a command it must be sent, one at a time.
 *unsubscribe* Unsubscribe from an event.
 *whoami* Tells your username.
 *listcommands*: Lists plugged in commands.
+
 Advanced Usage:
 -------------------------------
 

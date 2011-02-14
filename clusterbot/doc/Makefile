@@ -39,6 +39,8 @@ clean:
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
+#replace hyperlinkd with _static directory with static, since gits pages-gh accepts no underscores
+	perl -pi -w -e 's#"_static/#"static/#g;' $(BUILDDIR)/html/*.html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
