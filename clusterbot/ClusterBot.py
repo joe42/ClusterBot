@@ -69,6 +69,7 @@ class ClusterBot(JabberBot):
 
 	@botcmd
 	def serverinfo(self, mess, args):
+		"""Serverinfo"""
 		return "Clusterbot server for cluster monitoring and management through xmpp.";
 
 	@botcmd
