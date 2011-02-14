@@ -104,10 +104,12 @@ class ClusterBot(JabberBot):
 
 	@botcmd(hidden=True)
 	def holla(self, mess, args):
+		""""""
 		return 'Holla die Waldfee!'
 
 	@botcmd(hidden=True)
 	def hello(self, mess, args):
+		""""""
 		return 'Hello there! If you are new to clusterbot service type help for a list of commands.'
 	
 	def callback_presence(self, conn, presence):
