@@ -1,4 +1,4 @@
-from jabberbot import JabberBot, botcmd
+from clusterbot.jabberbot import JabberBot, botcmd
 import clusterbot.commands 
 import clusterbot.commandmodules
 from ssh import *; 
@@ -19,13 +19,10 @@ class ClusterBot(JabberBot):
 		self.headnodeIP = headnodeIP;
 		self.headnodeUser = headnodeUser;
 		self.headnodePW = headnodePW;
-		print "whitelist:"+str(allowedJIDs)
 		if not isinstance(allowedJIDs,list):
 			allowedJIDs = [allowedJIDs]
-			print "notlistlist:"+str(allowedJIDs)
 		self.allowedJIDs = allowedJIDs
 		self.allowedJIDs.append(jabberID)#don't ignore messages from self
-		print "whitelist:"+str(self.allowedJIDs)
 		self.__pid = None
 		self._tty = None
 		if None in [jabberID, jabberPW]:

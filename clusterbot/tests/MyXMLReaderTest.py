@@ -1,6 +1,7 @@
 from clusterbot.util.MyXMLReader import MyXMLReader
 import unittest
 import os
+import sys, inspect
 #import xmpp
 
 class MyXMLReaderTest(unittest.TestCase):
@@ -23,8 +24,13 @@ class MyXMLReaderTest(unittest.TestCase):
         self.assertTrue("buddy@jabber.ccc.de" in self.testobj.getAttribute("whitelist","jid"))
         self.assertRaises(ValueError, self.testobj.getAttribute,"whitelist","jiddddd")
         self.assertRaises(ValueError, self.testobj.getAttribute,"whitelistt","jid")
-        
-def suite():
-    suite = unittest.TestLoader().loadTestsFromTestCase(MyXMLReaderTest)
-    return suite
+         
 
+def suite():
+    suite = unittest.TestSuite()
+    module = sys.modules[__name__]
+    for name in dir(module):
+        obj = getattr(module, name)
+        if inspect.isclass(obj) and obj.__module__ == __name__:
+            suite.addTest(unittest.TestLoader().loadTestsFromTestCase(obj))
+    return suite

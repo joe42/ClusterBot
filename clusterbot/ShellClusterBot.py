@@ -1,15 +1,8 @@
 from clusterbot.ClusterBot import ClusterBot
 from clusterbot.shell.myconsole import MyConsole
 from functools import partial
-from jabberbot import botcmd
+from clusterbot.jabberbot import botcmd
 import xmpp
-"""
-Todo: manual import function X
-import function for xml modules X
-implement listevents X
-implement anycommand in ssh X
-load credentials and allowedJIDs from xml File X
-"""
 
 class ShellClusterBot(ClusterBot):
     """Allows for interactive shell-like sessions via xmpp.

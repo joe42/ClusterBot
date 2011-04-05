@@ -1,4 +1,4 @@
-from jabberbot import botcmd 
+from clusterbot.jabberbot import botcmd 
 from clusterbot.ShellClusterBot import ShellClusterBot
 from clusterbot.events.XMLEventParser import * 
 import sys 

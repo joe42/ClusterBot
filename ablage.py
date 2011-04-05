@@ -3,6 +3,7 @@ Created on 07.02.2011
 
 @author: joe
 '''
+from checkbox.variables import kwargs
 1. Remove REMOVE Tags                           X
 2. Enable passwort via command line.       X
 3. Enable Debugging.                                   X
@@ -35,13 +36,49 @@ dazu muss lediglich noch ein kommando createevent NAME ALIAS (param=value;)* hin
 7. Command-queueing ermöglichen um mehrere commandos hintereinander auszuführen  
 8. End2End verschlüsselung
 
-clusterbot/main 
-    Removed printing statement, which printed the password.
-    Set JabberBot.PING_FREQUENCY 
-clusterbot/ClusterBot.py, clusterbot/EventDrivenShellClusterBot.py
-    Adapted logging mechanism to JabberBot v.0.12 atm no backward compatibility
-Makefile
-    Added statement to html generation, to convert html hyperlinks to use static directory instead of _static for compatibility with pages-gh
+1. GUI
+
+
+class A1(object):
+    def __init__(self, *args, **kwargs):
+        self.a(*args,**kwargs)
+    def a(self, val):
+        print val
+
+class A2(object):
+    def __init__(self):
+        print "hi a2"
+    def a(self):
+        print a.im_class
+
+class B(A1,A2):
+    def b(self):
+        print "b"
+
+
+B()
+
+.a()
+B().a.im_class
+ 
+class myDecorator(object):
+    def __init__(self, f):
+        print "inside myDecorator.__init__()"
+        f() # Prove that function definition has completed
+    
+    def __call__(self):
+        print "inside myDecorator.__call__()"
+
+@myDecorator
+def aFunction():
+    print "inside aFunction()"
+
+print "Finished decorating aFunction()"
+aFunction()
+ 
+
+ 
+ 
 testconfig,myxmlreadertest
     Replaced
 

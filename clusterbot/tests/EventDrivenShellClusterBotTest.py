@@ -1,7 +1,7 @@
 import unittest 
 from xmpp.protocol import Message
 from clusterbot.EventDrivenShellClusterBot import EventDrivenShellClusterBot
-
+import sys, inspect
 
 class EventDrivenShellClusterBotTest(unittest.TestCase):
 	def setUp(self): 
@@ -39,8 +39,12 @@ class EventDrivenShellClusterBotTest(unittest.TestCase):
 		self.assertEquals(ret, 'You are not subscribed to the event '+self.existentEvent, "this user should have been unsubscribed from the event")
 
 
-def suite():
-	suite = unittest.TestLoader().loadTestsFromTestCase(EventDrivenShellClusterBotTest)
-	return suite
 
-#python -c "from unittest import main;main('clusterbot.tests.ClusterBotTest')"
+def suite():
+	suite = unittest.TestSuite()
+	module = sys.modules[__name__]
+	for name in dir(module):
+		obj = getattr(module, name)
+		if inspect.isclass(obj) and obj.__module__ == __name__:
+			suite.addTest(unittest.TestLoader().loadTestsFromTestCase(obj))
+	return suite

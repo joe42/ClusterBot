@@ -1,10 +1,11 @@
 from clusterbot.events.XMLEventParser import *
 import unittest
 #import xmpp
+import sys, inspect
 
 class XMLParserTest(unittest.TestCase):
 	inputFile = os.path.dirname(__file__)+ "/ExceedingCPUTempEvent2.xml"
-	print inputFile
+	#print inputFile
 	result = u"from clusterbot.ssh import *\n\
 from clusterbot.events.CachedEvent import CachedEvent\n\
 from clusterbot.util.string import *\n\
@@ -44,8 +45,15 @@ def returnInstance(tty, args):\n\
 		#print self.result
 		self.assertEquals(ret, self.result) 
 	
+
 def suite():
-	suite = unittest.TestLoader().loadTestsFromTestCase(XMLParserTest)
+	suite = unittest.TestSuite()
+	module = sys.modules[__name__]
+	for name in dir(module):
+		obj = getattr(module, name)
+		if inspect.isclass(obj) and obj.__module__ == __name__:
+			suite.addTest(unittest.TestLoader().loadTestsFromTestCase(obj))
 	return suite
 
-#python -c "from unittest import main;main('clusterbot.tests.XMLParserTest')"
+
+

@@ -17,7 +17,7 @@ class ClassBuilder(object):
         return ret; 
     
     def _getParametersFromDict(self, dict, startWithComma=False,withDefaultValues=False):
-        """The internal method for constructing return values for :ref:`getConstructorParameters`. 
+        """The internal method for constructing return values for :meth:`getConstructorParameters`. 
         Parameters and return values correspond, except the dict parameter, which explicitly specifies the parameter - default value pairs.
         """
         ret="";

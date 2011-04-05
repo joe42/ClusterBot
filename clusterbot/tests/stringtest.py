@@ -1,5 +1,6 @@
 from clusterbot.util.string import *
 import unittest
+import sys, inspect
 
 class StringTest(unittest.TestCase):
     def setUp(self): 
@@ -34,7 +35,12 @@ class StringTest(unittest.TestCase):
         self.assertEquals(indentLines("two lines \ntwo lines \n", 1), " two lines \n two lines \n")
         self.assertEquals(indentLines("two lines \ntwo lines \n", 0), "two lines \ntwo lines \n") 
         
-def suite():
-    suite = unittest.TestLoader().loadTestsFromTestCase(StringTest)
-    return suite
 
+def suite():
+    suite = unittest.TestSuite()
+    module = sys.modules[__name__]
+    for name in dir(module):
+        obj = getattr(module, name)
+        if inspect.isclass(obj) and obj.__module__ == __name__:
+            suite.addTest(unittest.TestLoader().loadTestsFromTestCase(obj))
+    return suite
