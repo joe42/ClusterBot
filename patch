@@ -1,0 +1,4 @@
+147c147
+<             authres = conn.auth(self.jid.getNode(), self.__password, self.res)
+---
+>             authres = conn.auth(self.jid.getNode(), self.__password, self.res, 0)
