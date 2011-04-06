@@ -55,8 +55,8 @@ def getConfigurationParameters():
             
     config = MyXMLReader(xmlFile);
     #The defaults of "" allow for a connection via private key
-    if headnodePW == None:
-        heanodePW = getXMLConfigurationParameterWithDefault(config, "headnode", "password") 
+    if headnodePW == "":
+        headnodePW = getXMLConfigurationParameterWithDefault(config, "headnode", "password") 
     headnodeUser = getXMLConfigurationParameterWithDefault(config, "headnode","user")
     headnodeIP = config.getAttribute("headnode","ip");
     jabberID = config.getAttribute("jabber","jid");
