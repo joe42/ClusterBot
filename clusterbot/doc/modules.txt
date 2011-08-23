@@ -6,11 +6,13 @@ Modules:
 
    ClusterBot
    EventDrivenShellClusterBot
+   IdolJabberBot
    ShellClusterBot
    commandmodules
    commands
    eventmodules
    events
+   features
    main
    shell
    ssh
