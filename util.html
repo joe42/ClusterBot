@@ -21,7 +21,7 @@
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="top" title="Clusterbot v0.7 documentation" href="index.html" />
     <link rel="up" title="Developers documentation" href="develop.html" />
-    <link rel="prev" title="The EventDrivenShellClusterBotTest Module" href="tests.html" /> 
+    <link rel="prev" title="The IdolJabberBot_ShellTest Module" href="tests.features.html" /> 
   </head>
   <body>
     <div class="related">
@@ -34,7 +34,7 @@
           <a href="modindex.html" title="Global Module Index"
              accesskey="M">modules</a> |</li>
         <li class="right" >
-          <a href="tests.html" title="The EventDrivenShellClusterBotTest Module"
+          <a href="tests.features.html" title="The IdolJabberBot_ShellTest Module"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
           <li><a href="develop.html" accesskey="U">Developers documentation</a> &raquo;</li> 
@@ -68,6 +68,98 @@ Does not indent empty strings.</dd></dl>
 <dt id="clusterbot.util.string.regSearchString">
 <tt class="descclassname">clusterbot.util.string.</tt><tt class="descname">regSearchString</tt><big>(</big><em>needle</em>, <em>haystack</em>, <em>grp=1</em><big>)</big><a class="headerlink" href="#clusterbot.util.string.regSearchString" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</div>
+<div class="section" id="module-clusterbot.util.IdolInheritance">
+<h1>The <tt class="xref docutils literal"><span class="pre">IdolInheritance</span></tt> Module<a class="headerlink" href="#module-clusterbot.util.IdolInheritance" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="clusterbot.util.IdolInheritance.FeatureDependency">
+<em class="property">class </em><tt class="descclassname">clusterbot.util.IdolInheritance.</tt><tt class="descname">FeatureDependency</tt><a class="headerlink" href="#clusterbot.util.IdolInheritance.FeatureDependency" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">object</span></tt></dd></dl>
+
+<dl class="class">
+<dt id="clusterbot.util.IdolInheritance.IdolFeature">
+<em class="property">class </em><tt class="descclassname">clusterbot.util.IdolInheritance.</tt><tt class="descname">IdolFeature</tt><a class="headerlink" href="#clusterbot.util.IdolInheritance.IdolFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">object</span></tt></p>
+<dl class="method">
+<dt id="clusterbot.util.IdolInheritance.IdolFeature.addFeatureCallback">
+<tt class="descname">addFeatureCallback</tt><big>(</big><em>implementor</em><big>)</big><a class="headerlink" href="#clusterbot.util.IdolInheritance.IdolFeature.addFeatureCallback" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.util.IdolInheritance.IdolFeature.getDependencies">
+<tt class="descname">getDependencies</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.util.IdolInheritance.IdolFeature.getDependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.util.IdolInheritance.IdolFeature.satisfiesPrecondition">
+<tt class="descname">satisfiesPrecondition</tt><big>(</big><em>implementor</em><big>)</big><a class="headerlink" href="#clusterbot.util.IdolInheritance.IdolFeature.satisfiesPrecondition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="clusterbot.util.IdolInheritance.IdolInheritance">
+<em class="property">class </em><tt class="descclassname">clusterbot.util.IdolInheritance.</tt><tt class="descname">IdolInheritance</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#clusterbot.util.IdolInheritance.IdolInheritance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">object</span></tt></p>
+<p>The I don&#8217;t like Inheritance class serves as a baseclass for classes which can hence be extended by other classes methods, using the feature decorator.
+<a title="clusterbot.util.IdolInheritance.IdolInheritance.addFeature" class="reference internal" href="#clusterbot.util.IdolInheritance.IdolInheritance.addFeature"><tt class="xref docutils literal"><span class="pre">addFeature()</span></tt></a> searches for any method marked by the feature decorator and adds them to the IdolInheritance object,
+if there is not yet a method of the same name. 
+.. note:</p>
+<div class="highlight-python"><pre>After calling the initializing method :meth:`__init__` and adding features with :meth:`addFeature` </pre>
+</div>
+<ul class="simple">
+<li>add features dynamically</li>
+<li>no change of object identity</li>
+<li>replace methods with the same name by marking them with feature(force=True)</li>
+<li>chain methods with feature(chain=True)</li>
+<li>no need to worry about correct behaviour of class-hierarchie __init__ calls</li>
+<li>use requirements and dependencies like in a component based system</li>
+</ul>
+<dl class="method">
+<dt id="clusterbot.util.IdolInheritance.IdolInheritance.addFeature">
+<tt class="descname">addFeature</tt><big>(</big><em>feature</em><big>)</big><a class="headerlink" href="#clusterbot.util.IdolInheritance.IdolInheritance.addFeature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.util.IdolInheritance.IdolInheritance.getFeatureByName">
+<tt class="descname">getFeatureByName</tt><big>(</big><em>featureName</em><big>)</big><a class="headerlink" href="#clusterbot.util.IdolInheritance.IdolInheritance.getFeatureByName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.util.IdolInheritance.IdolInheritance.getReturnValueOfPreviousMethodInChain">
+<tt class="descname">getReturnValueOfPreviousMethodInChain</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.util.IdolInheritance.IdolInheritance.getReturnValueOfPreviousMethodInChain" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Returns:</th><td class="field-body">The previous method&#8217;s return value in the chain.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.util.IdolInheritance.IdolInheritance.initialize">
+<tt class="descname">initialize</tt><big>(</big><big>)</big><a class="headerlink" href="#clusterbot.util.IdolInheritance.IdolInheritance.initialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="clusterbot.util.IdolInheritance.PreconditionUnsatisfied">
+<em class="property">exception </em><tt class="descclassname">clusterbot.util.IdolInheritance.</tt><tt class="descname">PreconditionUnsatisfied</tt><big>(</big><em>implementor</em>, <em>feature</em><big>)</big><a class="headerlink" href="#clusterbot.util.IdolInheritance.PreconditionUnsatisfied" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">exceptions.Exception</span></tt></dd></dl>
+
+<dl class="exception">
+<dt id="clusterbot.util.IdolInheritance.ReturnValueException">
+<em class="property">exception </em><tt class="descclassname">clusterbot.util.IdolInheritance.</tt><tt class="descname">ReturnValueException</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#clusterbot.util.IdolInheritance.ReturnValueException" title="Permalink to this definition">¶</a></dt>
+<dd>Bases: <tt class="xref docutils literal"><span class="pre">exceptions.Exception</span></tt></dd></dl>
+
+<dl class="function">
+<dt id="clusterbot.util.IdolInheritance.feature">
+<tt class="descclassname">clusterbot.util.IdolInheritance.</tt><tt class="descname">feature</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#clusterbot.util.IdolInheritance.feature" title="Permalink to this definition">¶</a></dt>
+<dd>Decorator for a Feature&#8217;s methods which can be added to an IdolInheritance subclass.</dd></dl>
 
 </div>
 <div class="section" id="module-clusterbot.util.ClassBuilder">
@@ -193,14 +285,15 @@ Creates the dictionary self.tags which might have a dictionary of attribute-valu
             <h3><a href="index.html">Table Of Contents</a></h3>
             <ul>
 <li><a class="reference external" href="#">The <tt class="docutils literal"><span class="pre">string</span></tt> Module</a></li>
+<li><a class="reference external" href="#module-clusterbot.util.IdolInheritance">The <tt class="docutils literal"><span class="pre">IdolInheritance</span></tt> Module</a></li>
 <li><a class="reference external" href="#module-clusterbot.util.ClassBuilder">The <tt class="docutils literal"><span class="pre">ClassBuilder</span></tt> Module</a></li>
 <li><a class="reference external" href="#module-clusterbot.util.timer">The <tt class="docutils literal"><span class="pre">timer</span></tt> Module</a></li>
 <li><a class="reference external" href="#module-clusterbot.util.MyXMLReader">The <tt class="docutils literal"><span class="pre">MyXMLReader</span></tt> Module</a></li>
 </ul>
 
             <h4>Previous topic</h4>
-            <p class="topless"><a href="tests.html"
-                                  title="previous chapter">The <tt class="docutils literal docutils literal docutils literal"><span class="pre">EventDrivenShellClusterBotTest</span></tt> Module</a></p>
+            <p class="topless"><a href="tests.features.html"
+                                  title="previous chapter">The <tt class="docutils literal docutils literal docutils literal"><span class="pre">IdolJabberBot_ShellTest</span></tt> Module</a></p>
             <h3>This Page</h3>
             <ul class="this-page-menu">
               <li><a href="_sources/util.txt"
@@ -233,7 +326,7 @@ Creates the dictionary self.tags which might have a dictionary of attribute-valu
           <a href="modindex.html" title="Global Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="tests.html" title="The EventDrivenShellClusterBotTest Module"
+          <a href="tests.features.html" title="The IdolJabberBot_ShellTest Module"
              >previous</a> |</li>
         <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
           <li><a href="develop.html" >Developers documentation</a> &raquo;</li> 

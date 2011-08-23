@@ -6,6 +6,14 @@ The :mod:`string` Module
     :undoc-members:
     :show-inheritance:
 
+The :mod:`IdolInheritance` Module
+---------------------------------
+
+.. automodule:: clusterbot.util.IdolInheritance
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 The :mod:`ClassBuilder` Module
 ------------------------------
 

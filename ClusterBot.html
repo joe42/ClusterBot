@@ -54,14 +54,19 @@
 <h1>The <tt class="xref docutils literal"><span class="pre">ClusterBot</span></tt> Module<a class="headerlink" href="#module-clusterbot.ClusterBot" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="clusterbot.ClusterBot.ClusterBot">
-<em class="property">class </em><tt class="descclassname">clusterbot.ClusterBot.</tt><tt class="descname">ClusterBot</tt><big>(</big><em>jabberID</em>, <em>jabberPW</em>, <em>allowedJIDs</em>, <em>headnodeIP</em>, <em>headnodeUser</em>, <em>headnodePW</em>, <em>debug=False</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">jabberbot.JabberBot</span></tt></p>
+<em class="property">class </em><tt class="descclassname">clusterbot.ClusterBot.</tt><tt class="descname">ClusterBot</tt><big>(</big><em>jabberID</em>, <em>jabberPW</em>, <em>headnodeIP</em>, <em>headnodeUser</em>, <em>headnodePW</em>, <em>debug=False</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">clusterbot.jabberbot.JabberBot</span></tt></p>
 <p>A Jabber service to monitor clusters.</p>
 <ul class="simple">
 <li>Has a standing ssh connection to the headnode of a cluster to send commands via the ssh module.</li>
 <li>Allows for whitelisting by Jabber ids.</li>
 <li>Supports runtime loading of new command modules (see <a title="clusterbot.ClusterBot.ClusterBot.importnewcommands" class="reference internal" href="#clusterbot.ClusterBot.ClusterBot.importnewcommands"><tt class="xref docutils literal"><span class="pre">importnewcommands()</span></tt></a>).</li>
 </ul>
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.broadcast">
+<tt class="descname">broadcast</tt><big>(</big><em>message</em>, <em>users=None</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.broadcast" title="Permalink to this definition">¶</a></dt>
+<dd>Broadcasts the message to a list of users given as jabber ids.</dd></dl>
+
 <dl class="method">
 <dt id="clusterbot.ClusterBot.ClusterBot.callback_presence">
 <tt class="descname">callback_presence</tt><big>(</big><em>conn</em>, <em>presence</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.callback_presence" title="Permalink to this definition">¶</a></dt>
@@ -126,7 +131,14 @@ This is useful in case the ssh connection timed out.</dd></dl>
 <dl class="method">
 <dt id="clusterbot.ClusterBot.ClusterBot.serverinfo">
 <tt class="descname">serverinfo</tt><big>(</big><em>mess</em>, <em>args</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.serverinfo" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd>Serverinfo</dd></dl>
+
+<dl class="method">
+<dt id="clusterbot.ClusterBot.ClusterBot.set_whitelist">
+<tt class="descname">set_whitelist</tt><big>(</big><em>whitelist</em><big>)</big><a class="headerlink" href="#clusterbot.ClusterBot.ClusterBot.set_whitelist" title="Permalink to this definition">¶</a></dt>
+<dd>Sets the whitelist for allowed Jabber IDs.
+Without setting a custom whitelist, every Jabber ID is allowed.
+:param whitelist: List of Strings with Jabber IDs to allow</dd></dl>
 
 <dl class="method">
 <dt id="clusterbot.ClusterBot.ClusterBot.unknown_command">

@@ -22,7 +22,7 @@
     <link rel="top" title="Clusterbot v0.7 documentation" href="index.html" />
     <link rel="up" title="Developers documentation" href="develop.html" />
     <link rel="next" title="The batchqueues Module" href="commandmodules.html" />
-    <link rel="prev" title="The EventDrivenShellClusterBot Module" href="EventDrivenShellClusterBot.html" /> 
+    <link rel="prev" title="The IdolJabberBot Module" href="IdolJabberBot.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,7 +38,7 @@
           <a href="commandmodules.html" title="The batchqueues Module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="EventDrivenShellClusterBot.html" title="The EventDrivenShellClusterBot Module"
+          <a href="IdolJabberBot.html" title="The IdolJabberBot Module"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
           <li><a href="develop.html" accesskey="U">Developers documentation</a> &raquo;</li> 
@@ -54,7 +54,7 @@
 <h1>The <tt class="xref docutils literal"><span class="pre">ShellClusterBot</span></tt> Module<a class="headerlink" href="#module-clusterbot.ShellClusterBot" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="clusterbot.ShellClusterBot.ShellClusterBot">
-<em class="property">class </em><tt class="descclassname">clusterbot.ShellClusterBot.</tt><tt class="descname">ShellClusterBot</tt><big>(</big><em>jabberID</em>, <em>jabberPW</em>, <em>allowedJIDs</em>, <em>headnodeIP</em>, <em>headnodeUser</em>, <em>headnodePW</em>, <em>debug=False</em><big>)</big><a class="headerlink" href="#clusterbot.ShellClusterBot.ShellClusterBot" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">clusterbot.ShellClusterBot.</tt><tt class="descname">ShellClusterBot</tt><big>(</big><em>jabberID</em>, <em>jabberPW</em>, <em>headnodeIP</em>, <em>headnodeUser</em>, <em>headnodePW</em>, <em>debug=False</em><big>)</big><a class="headerlink" href="#clusterbot.ShellClusterBot.ShellClusterBot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a title="clusterbot.ClusterBot.ClusterBot" class="reference external" href="ClusterBot.html#clusterbot.ClusterBot.ClusterBot"><tt class="xref docutils literal"><span class="pre">clusterbot.ClusterBot.ClusterBot</span></tt></a></p>
 <p>Allows for interactive shell-like sessions via xmpp.
 Take a look at <a title="clusterbot.ShellClusterBot.ShellClusterBot.connect_callback" class="reference internal" href="#clusterbot.ShellClusterBot.ShellClusterBot.connect_callback"><tt class="xref docutils literal"><span class="pre">connect_callback()</span></tt></a> for an example on how to invoke ShellClusterBot.</p>
@@ -70,7 +70,7 @@ Take a look at <a title="clusterbot.ShellClusterBot.ShellClusterBot.connect_call
 Must be called when connection to xmpp server is established and self.conn exists.
 Therefore it must be given as an argument to serve_forever after object creation like:
 .. highlight::
-bot = ShellClusterBot(jabberID, jabberPW, jabberWhitelist, headnodeIP, headnodeUser, headnodePW)
+bot = ShellClusterBot(jabberID, jabberPW, headnodeIP, headnodeUser, headnodePW)
 bot.serve_forever(connect_callback = bot.connect_callback)
 bot.quit()</dd></dl>
 
@@ -97,8 +97,8 @@ The syntax is: opensession [username] password</dd></dl>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
             <h4>Previous topic</h4>
-            <p class="topless"><a href="EventDrivenShellClusterBot.html"
-                                  title="previous chapter">The <tt class="docutils literal docutils literal docutils literal"><span class="pre">EventDrivenShellClusterBot</span></tt> Module</a></p>
+            <p class="topless"><a href="IdolJabberBot.html"
+                                  title="previous chapter">The <tt class="docutils literal docutils literal docutils literal"><span class="pre">IdolJabberBot</span></tt> Module</a></p>
             <h4>Next topic</h4>
             <p class="topless"><a href="commandmodules.html"
                                   title="next chapter">The <tt class="docutils literal"><span class="pre">batchqueues</span></tt> Module</a></p>
@@ -137,7 +137,7 @@ The syntax is: opensession [username] password</dd></dl>
           <a href="commandmodules.html" title="The batchqueues Module"
              >next</a> |</li>
         <li class="right" >
-          <a href="EventDrivenShellClusterBot.html" title="The EventDrivenShellClusterBot Module"
+          <a href="IdolJabberBot.html" title="The IdolJabberBot Module"
              >previous</a> |</li>
         <li><a href="index.html">Clusterbot v0.7 documentation</a> &raquo;</li>
           <li><a href="develop.html" >Developers documentation</a> &raquo;</li> 

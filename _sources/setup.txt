@@ -5,12 +5,16 @@ Setup documentation
 Requirements
 ---------------------
 
-The Clusterbot service needs Debian server representing the headnode of a cluster. 
-On this server a user account accessible via ssh must exist as well as `pdsh <www.pdsh.info/>`_, which is used for the implementation of a few commands.
-The Linux package sensors needs to be installed to monitor system temperatures, also on all computenodes.
-Then again, one server needs to run the application. This server should have a Linux distribution installed, since the Clusterbot service uses fork. 
+The Clusterbot service needs server. On this server a user account accessible via ssh must exist.
+`pdsh <www.pdsh.info/>`_ is required for the a few example commands as well as the Linux package sensors.
+These commands can be removed so that pdsh and sensors are not necessary anymore.
+One server needs to run the application. This server should have a Linux distribution installed, since the Clusterbot service uses fork. 
 This is due to current problems occuring with the fork command on FreeBSD <= 6.3, Cygwin and OS/2 EMX (see http://docs.python.org/library/os.html#os.fork). 
-Furthermore Python 2.6 should be installed to run the application. The server needs to be able to establish a connection via ssh and a XMPP capable Instant Messenger.
+Furthermore Python 2.6 should be installed to run the application. 
+Install `JabberBot <http://thp.io/2007/python-jabberbot/>`_ and `xmpppy <http://thp.io/2007/python-jabberbot/>`_.
+	.. note::
+	
+	The server needs to be able to establish a connection via SSH and a XMPP capable Instant Messenger.
 
 .. warning::
 
@@ -29,7 +33,7 @@ Usage
 
 To run the application call: 
 
-**python** *-m clusterbot.ClusterBot [ xmlconfigfile ] [usepwd]* 
+**python** *-m clusterbot.main [ xmlconfigfile ] [usepwd]* 
 
 	* xmlconfigfile	
 		*The XML configuration file for clusterbot.*

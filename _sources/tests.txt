@@ -1,3 +1,10 @@
+Subpackages
+-----------
+
+.. toctree::
+
+    tests.features
+
 The :mod:`EventDrivenShellClusterBotTest` Module
 ------------------------------------------------
 
@@ -14,10 +21,10 @@ The :mod:`test` Module
     :undoc-members:
     :show-inheritance:
 
-The :mod:`ShellClusterBotTest` Module
+The :mod:`IdolInheritanceTest` Module
 -------------------------------------
 
-.. automodule:: clusterbot.tests.ShellClusterBotTest
+.. automodule:: clusterbot.tests.IdolInheritanceTest
     :members:
     :undoc-members:
     :show-inheritance:
@@ -34,6 +41,14 @@ The :mod:`MyXMLReaderTest` Module
 ---------------------------------
 
 .. automodule:: clusterbot.tests.MyXMLReaderTest
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+The :mod:`main` Module
+----------------------
+
+.. automodule:: clusterbot.tests.main
     :members:
     :undoc-members:
     :show-inheritance:

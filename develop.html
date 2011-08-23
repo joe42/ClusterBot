@@ -163,7 +163,7 @@ The following commands need to be issued in the Python  shell:</p>
 <p>To generate this documentation call:</p>
 <blockquote>
 <ol class="arabic simple">
-<li><strong>clusterbot/doc/generate_modules.py</strong> <em class="xref">-d</em> <em>clusterbot/doc</em> <em class="xref">-f</em> <em class="xref">-m</em> 5 clusterbot clusterbot/xmpp  clusterbot/jabberbot.py clusterbot/blowfish.py*</li>
+<li><strong>clusterbot/doc/generate_modules.py</strong> <em class="xref">-d</em> <em>clusterbot/doc</em> <em class="xref">-f</em> <em class="xref">-m</em> 5 clusterbot clusterbot/xmpp  clusterbot/jabberbot.py clusterbot/blowfish.py</li>
 <li><strong>make</strong> <em class="xref">-f</em> <em>clusterbot/doc/Makefile html</em></li>
 </ol>
 </blockquote>
@@ -178,6 +178,7 @@ The following commands need to be issued in the Python  shell:</p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="ClusterBot.html">The <tt class="docutils literal"><span class="pre">ClusterBot</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="EventDrivenShellClusterBot.html">The <tt class="docutils literal"><span class="pre">EventDrivenShellClusterBot</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="IdolJabberBot.html">The <tt class="docutils literal"><span class="pre">IdolJabberBot</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="ShellClusterBot.html">The <tt class="docutils literal"><span class="pre">ShellClusterBot</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="commandmodules.html">The <tt class="docutils literal"><span class="pre">batchqueues</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="commandmodules.html#module-clusterbot.commandmodules.memoryusage">The <tt class="docutils literal"><span class="pre">memoryusage</span></tt> Module</a></li>
@@ -189,16 +190,35 @@ The following commands need to be issued in the Python  shell:</p>
 <li class="toctree-l1"><a class="reference external" href="events.html#module-clusterbot.events.CachedEvent">The <tt class="docutils literal"><span class="pre">CachedEvent</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="events.html#the-eventfactory-module">The <tt class="docutils literal"><span class="pre">EventFactory</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="events.html#module-clusterbot.events.XMLEventParser">The <tt class="docutils literal"><span class="pre">XMLEventParser</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="features.html">The <tt class="docutils literal"><span class="pre">IdolJabberBot_Whitelist</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="features.html#module-clusterbot.features.IdolJabberBot_Shell">The <tt class="docutils literal"><span class="pre">IdolJabberBot_Shell</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="features.html#module-clusterbot.features.IdolJabberBot_SSHConnection">The <tt class="docutils literal"><span class="pre">IdolJabberBot_SSHConnection</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="features.html#module-clusterbot.features.IdolJabberBotFeature">The <tt class="docutils literal"><span class="pre">IdolJabberBotFeature</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="features.html#module-clusterbot.features.IdolJabberBot_XMLEvents">The <tt class="docutils literal"><span class="pre">IdolJabberBot_XMLEvents</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="features.html#module-clusterbot.features.IdolJabberBot_XMLCommands">The <tt class="docutils literal"><span class="pre">IdolJabberBot_XMLCommands</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="features.html#module-clusterbot.features.IdolJabberBot_Broadcast">The <tt class="docutils literal"><span class="pre">IdolJabberBot_Broadcast</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="features.html#module-clusterbot.features.IdolJabberBot_DecoratorCommands">The <tt class="docutils literal"><span class="pre">IdolJabberBot_DecoratorCommands</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="main.html">The <tt class="docutils literal"><span class="pre">main</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="shell.html">The <tt class="docutils literal"><span class="pre">myconsole</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="ssh.html">The <tt class="docutils literal"><span class="pre">ssh</span></tt> Module</a></li>
-<li class="toctree-l1"><a class="reference external" href="tests.html">The <tt class="docutils literal"><span class="pre">EventDrivenShellClusterBotTest</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="tests.html">Subpackages</a><ul>
+<li class="toctree-l2"><a class="reference external" href="tests.features.html">The <tt class="docutils literal"><span class="pre">IdolJabberBot_ShellTest</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference external" href="tests.features.html#module-clusterbot.tests.features.IdolJabberBot_SSHConnectionTest">The <tt class="docutils literal"><span class="pre">IdolJabberBot_SSHConnectionTest</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference external" href="tests.features.html#module-clusterbot.tests.features.IdolJabberBot_WhitelistTest">The <tt class="docutils literal"><span class="pre">IdolJabberBot_WhitelistTest</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference external" href="tests.features.html#module-clusterbot.tests.features.IdolJabberBot_XMLEventsTest">The <tt class="docutils literal"><span class="pre">IdolJabberBot_XMLEventsTest</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference external" href="tests.features.html#module-clusterbot.tests.features.IdolJabberBot_DecoratorCommandsTest">The <tt class="docutils literal"><span class="pre">IdolJabberBot_DecoratorCommandsTest</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference external" href="tests.features.html#module-clusterbot.tests.features.IdolJabberBot_XMLCommandsTest">The <tt class="docutils literal"><span class="pre">IdolJabberBot_XMLCommandsTest</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="tests.html#module-clusterbot.tests.EventDrivenShellClusterBotTest">The <tt class="docutils literal"><span class="pre">EventDrivenShellClusterBotTest</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="tests.html#module-clusterbot.tests.test">The <tt class="docutils literal"><span class="pre">test</span></tt> Module</a></li>
-<li class="toctree-l1"><a class="reference external" href="tests.html#module-clusterbot.tests.ShellClusterBotTest">The <tt class="docutils literal"><span class="pre">ShellClusterBotTest</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="tests.html#module-clusterbot.tests.IdolInheritanceTest">The <tt class="docutils literal"><span class="pre">IdolInheritanceTest</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="tests.html#module-clusterbot.tests.XMLParserTest">The <tt class="docutils literal"><span class="pre">XMLParserTest</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="tests.html#module-clusterbot.tests.MyXMLReaderTest">The <tt class="docutils literal"><span class="pre">MyXMLReaderTest</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="tests.html#module-clusterbot.tests.main">The <tt class="docutils literal"><span class="pre">main</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="tests.html#module-clusterbot.tests.stringtest">The <tt class="docutils literal"><span class="pre">stringtest</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="util.html">The <tt class="docutils literal"><span class="pre">string</span></tt> Module</a></li>
+<li class="toctree-l1"><a class="reference external" href="util.html#module-clusterbot.util.IdolInheritance">The <tt class="docutils literal"><span class="pre">IdolInheritance</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="util.html#module-clusterbot.util.ClassBuilder">The <tt class="docutils literal"><span class="pre">ClassBuilder</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="util.html#module-clusterbot.util.timer">The <tt class="docutils literal"><span class="pre">timer</span></tt> Module</a></li>
 <li class="toctree-l1"><a class="reference external" href="util.html#module-clusterbot.util.MyXMLReader">The <tt class="docutils literal"><span class="pre">MyXMLReader</span></tt> Module</a></li>

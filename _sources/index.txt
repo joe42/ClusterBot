@@ -12,7 +12,7 @@ Introduction
 
 ClusterBot is a Python application written to create XMPP based services without the need to program and 
 provides means to manage an ssh server. It builds on `JabberBot <http://thp.io/2007/python-jabberbot/>`_, 
-which in turn builds on  `xmpppy <http://thp.io/2007/python-jabberbot/>`_. The License used is `GPLv3 <http://www.gnu.org/licenses/>.
+which in turn builds on  `xmpppy <http://thp.io/2007/python-jabberbot/>`_. The License used is `GPLv3 <http://www.gnu.org/licenses/>`_.
 
 Features
 ---------------------
@@ -37,7 +37,7 @@ Contents
    setup
    develop 
 
-Indices and tables:
+Indices and tables
 ---------------------
 
 * :ref:`genindex`

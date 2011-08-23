@@ -52,12 +52,15 @@
 <h1>Setup documentation<a class="headerlink" href="#setup-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>The Clusterbot service needs Debian server representing the headnode of a cluster.
-On this server a user account accessible via ssh must exist as well as <a class="reference external" href="www.pdsh.info/">pdsh</a>, which is used for the implementation of a few commands.
-The Linux package sensors needs to be installed to monitor system temperatures, also on all computenodes.
-Then again, one server needs to run the application. This server should have a Linux distribution installed, since the Clusterbot service uses fork.
+<p>The Clusterbot service needs server. On this server a user account accessible via ssh must exist.
+<a class="reference external" href="www.pdsh.info/">pdsh</a> is required for the a few example commands as well as the Linux package sensors.
+These commands can be removed so that pdsh and sensors are not necessary anymore.
+One server needs to run the application. This server should have a Linux distribution installed, since the Clusterbot service uses fork.
 This is due to current problems occuring with the fork command on FreeBSD &lt;= 6.3, Cygwin and OS/2 EMX (see <a class="reference external" href="http://docs.python.org/library/os.html#os.fork">http://docs.python.org/library/os.html#os.fork</a>).
-Furthermore Python 2.6 should be installed to run the application. The server needs to be able to establish a connection via ssh and a XMPP capable Instant Messenger.</p>
+Furthermore Python 2.6 should be installed to run the application.
+Install <a class="reference external" href="http://thp.io/2007/python-jabberbot/">JabberBot</a> and <a class="reference external" href="http://thp.io/2007/python-jabberbot/">xmpppy</a>.</p>
+<blockquote>
+The server needs to be able to establish a connection via SSH and a XMPP capable Instant Messenger.</blockquote>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Since the data exchanged by the users with the service can contain security critical data it is highly recommended to use one XMPP server,
@@ -72,7 +75,7 @@ which enforces encryption. Since the encryption is no End-to-End-Encryption the 
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>To run the application call:</p>
-<p><strong>python</strong> <em>-m clusterbot.ClusterBot [ xmlconfigfile ] [usepwd]</em></p>
+<p><strong>python</strong> <em>-m clusterbot.main [ xmlconfigfile ] [usepwd]</em></p>
 <blockquote>
 <ul>
 <li><dl class="first docutils">
