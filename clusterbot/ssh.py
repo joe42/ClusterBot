@@ -42,7 +42,7 @@ PROMPT = ["__very__unique__prompt__"]
 PASSWDS = ["password: ", "Password: ", "passphrase:", "Passphrase:"];
 CONTINUE = ["(yes/no)?", "(y/n)?"];
 
-LANG = "en_US";
+LANG = "en_US.UTF-8";
 TIMEOUT = 10;
 
 LS_INDICATORS = ["*", "@", "/", "="];
