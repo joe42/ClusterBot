@@ -138,7 +138,7 @@ Documentation
 
 To generate this documentation call: 
 
-	1. :program:`clusterbot/doc/generate_modules.py` :option:`-d` *clusterbot/doc* :option:`-f` :option:`-m` 5 clusterbot clusterbot/xmpp  clusterbot/jabberbot.py clusterbot/blowfish.py*
+	1. :program:`clusterbot/doc/generate_modules.py` :option:`-d` *clusterbot/doc* :option:`-f` :option:`-m` 5 clusterbot clusterbot/xmpp  clusterbot/jabberbot.py clusterbot/blowfish.py
 	2. :program:`make` :option:`-f` *clusterbot/doc/Makefile html*
 
 
