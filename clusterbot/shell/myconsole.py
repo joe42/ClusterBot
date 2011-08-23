@@ -3,7 +3,8 @@ import select
 import time
 from clusterbot import ssh
 import os
-
+import re
+        
 """An interactive shell for Python.
 Send a command as strings with :meth:`sendcmd`. 
 The reply follows in an asynchronous manner and is passed as an argument to the outputCallback defined as a parameter to :meth:`__init__`. 
@@ -22,7 +23,7 @@ class MyConsole():
         self.__cmdAccessLock = thread.allocate_lock();
         self.__pid = None;
         self.__tty = None;
-        self.setTerminated(True); 
+        self.__hasTerminated = True; 
         self.reconnect();
         
     def reconnect(self):
@@ -65,7 +66,6 @@ class MyConsole():
     def setTerminated(self, terminate=True):
         """Sets the :attr:`__hasTerminated`. If *terminate* is True, the shell session is terminated."""
         if  terminate and not self.__hasTerminated:
-            self.__hasTerminated = True;
             self.__outputCallback("Session will be terminated.");
             ssh.rlogout(self.__tty);
             os.waitpid(self.__pid, 0); 
@@ -77,6 +77,10 @@ class MyConsole():
         return time.time() - self.__timeOfLastFlush
      
     def __readtty(self):
+        control_chars = ''.join(map(unichr, range(0,32) + range(127,160)))
+        control_char_re = re.compile('[%s]' % re.escape(control_chars))
+        def remove_control_chars(s):
+            return control_char_re.sub('', s)
         def isSessionEnd(string):
             """:returns: True iff the command contains SESSION_END."""
             return string.find(self.SESSION_END) >= 0
@@ -92,7 +96,7 @@ class MyConsole():
                 self.__cmd = ""
             self.__cmdAccessLock.release();
             if len(string.strip(" \n\r")) != 0:
-                self.__outputCallback(string);
+                self.__outputCallback(remove_control_chars(string))
         def enoughTimePassed():
             return self.__getSecondsSinceLastFlush() >= 1;
         
