@@ -67,9 +67,10 @@ if __name__ == "__main__":
     bot = None
     #print "ping frequency: "+str(JabberBot.PING_FREQUENCY)
     JabberBot.PING_FREQUENCY = 20
-    print "ping frequency: "+str(JabberBot.PING_FREQUENCY)
+    #print "ping frequency: "+str(JabberBot.PING_FREQUENCY)
+    bot = EventDrivenShellClusterBot(jabberID, jabberPW, headnodeIP, headnodeUser, headnodePW, debug=True)
+    bot.set_whitelist(jabberWhitelist) 
     try:
-        bot = EventDrivenShellClusterBot(jabberID, jabberPW, headnodeIP, headnodeUser, headnodePW, debug=True) 
         bot.serve_forever(connect_callback = bot.connect_callback);
     finally:
         if bot:
