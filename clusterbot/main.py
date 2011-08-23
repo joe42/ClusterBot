@@ -1,13 +1,6 @@
 import getpass;
 from clusterbot.util.MyXMLReader import MyXMLReader
-from clusterbot.IdolJabberBot import IdolJabberBot
-from clusterbot.features.IdolJabberBot_Broadcast import IdolJabberBot_Broadcast
-from clusterbot.features.IdolJabberBot_DecoratorCommands import IdolJabberBot_DecoratorCommands
-from clusterbot.features.IdolJabberBot_Shell import IdolJabberBot_Shell
-from clusterbot.features.IdolJabberBot_SSHConnection import IdolJabberBot_SSHConnection
-from clusterbot.features.IdolJabberBot_Whitelist import IdolJabberBot_Whitelist
-from clusterbot.features.IdolJabberBot_XMLCommands import IdolJabberBot_XMLCommands
-from clusterbot.features.IdolJabberBot_XMLEvents import IdolJabberBot_XMLEvents
+from clusterbot.EventDrivenShellClusterBot import EventDrivenShellClusterBot
 from clusterbot.jabberbot import JabberBot
 
 import sys 
@@ -72,26 +65,11 @@ def isXMLFile(file):
 if __name__ == "__main__":          
     headnodeIP, headnodeUser, headnodePW, jabberID, jabberPW, jabberWhitelist = getConfigurationParameters();
     bot = None
-    print "ping frequency: "+str(JabberBot.PING_FREQUENCY)
+    #print "ping frequency: "+str(JabberBot.PING_FREQUENCY)
     JabberBot.PING_FREQUENCY = 20
     print "ping frequency: "+str(JabberBot.PING_FREQUENCY)
     try:
-        bot = IdolJabberBot(jabberID, jabberPW);
-        whitelistFeature = IdolJabberBot_Whitelist(jabberWhitelist)
-        broadcastFeature = IdolJabberBot_Broadcast()
-        shellFeature = IdolJabberBot_Shell()
-        sshConnectionFeature = IdolJabberBot_SSHConnection(headnodeIP, headnodeUser, headnodePW)
-        decoratorCommandsFeature =  IdolJabberBot_DecoratorCommands()
-        xmlCommandsFeature = IdolJabberBot_XMLCommands()
-        xmlEventsFeature = IdolJabberBot_XMLEvents()
-        bot.addFeature(whitelistFeature)
-        bot.addFeature(broadcastFeature)
-        bot.addFeature(sshConnectionFeature)
-        bot.addFeature(decoratorCommandsFeature)
-        bot.addFeature(shellFeature)
-        bot.addFeature(xmlCommandsFeature)
-        bot.addFeature(xmlEventsFeature)
-        bot.initialize();
+        bot = EventDrivenShellClusterBot(jabberID, jabberPW, headnodeIP, headnodeUser, headnodePW, debug=True) 
         bot.serve_forever(connect_callback = bot.connect_callback);
     finally:
         if bot:
