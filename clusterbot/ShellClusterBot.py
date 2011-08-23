@@ -8,8 +8,8 @@ class ShellClusterBot(ClusterBot):
     """Allows for interactive shell-like sessions via xmpp.
     Take a look at :meth:`connect_callback` for an example on how to invoke ShellClusterBot. 
     """
-    def __init__(self, jabberID, jabberPW, allowedJIDs, headnodeIP, headnodeUser, headnodePW, debug=False):
-        super( ShellClusterBot, self ).__init__(jabberID, jabberPW, allowedJIDs, headnodeIP, headnodeUser, headnodePW, debug);
+    def __init__(self, jabberID, jabberPW, headnodeIP, headnodeUser, headnodePW, debug=False):
+        super( ShellClusterBot, self ).__init__(jabberID, jabberPW, headnodeIP, headnodeUser, headnodePW, debug);
         self.shells = {}
 
     def connect_callback(self):
@@ -17,7 +17,7 @@ class ShellClusterBot(ClusterBot):
         Must be called when connection to xmpp server is established and self.conn exists.
         Therefore it must be given as an argument to serve_forever after object creation like:
         .. highlight::
-        bot = ShellClusterBot(jabberID, jabberPW, jabberWhitelist, headnodeIP, headnodeUser, headnodePW)
+        bot = ShellClusterBot(jabberID, jabberPW, headnodeIP, headnodeUser, headnodePW)
         bot.serve_forever(connect_callback = bot.connect_callback)
         bot.quit()
         """

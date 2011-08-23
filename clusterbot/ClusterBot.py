@@ -13,16 +13,13 @@ class ClusterBot(JabberBot):
 	* Supports runtime loading of new command modules (see :meth:`importnewcommands`).
 	
 	"""
-	def __init__(self, jabberID, jabberPW, allowedJIDs, headnodeIP, headnodeUser, headnodePW, debug=False): 
+	def __init__(self, jabberID, jabberPW, headnodeIP, headnodeUser, headnodePW, debug=False): 
 		super( ClusterBot, self ).__init__(jabberID, jabberPW, debug=debug);
 		self.pluginCommands = {};
 		self.headnodeIP = headnodeIP;
 		self.headnodeUser = headnodeUser;
-		self.headnodePW = headnodePW;
-		if not isinstance(allowedJIDs,list):
-			allowedJIDs = [allowedJIDs]
-		self.allowedJIDs = allowedJIDs
-		self.allowedJIDs.append(jabberID)#don't ignore messages from self
+		self.headnodePW = headnodePW; 
+		self.__whitelist = None
 		self.__pid = None
 		self._tty = None
 		if None in [jabberID, jabberPW]:
@@ -109,18 +106,31 @@ class ClusterBot(JabberBot):
 		""""""
 		return 'Hello there! If you are new to clusterbot service type help for a list of commands.'
 	
+	def set_whitelist(self, whitelist):
+		"""Sets the whitelist for allowed Jabber IDs.
+		Without setting a custom whitelist, every Jabber ID is allowed.
+		:param whitelist: List of Strings with Jabber IDs to allow
+		"""
+		self.__whitelist = whitelist
+		self.__whitelist.append(self.__username)#don't ignore messages from self
+			
 	def callback_presence(self, conn, presence):
 		"""Overwrites callback_presence to disallow subscription of users not listed in allowedJIDS."""
 		jid = presence.getFrom();
-		authenticationSuccessful = False;
-		for allowedJID in self.allowedJIDs:
-			if xmpp.JID(allowedJID).bareMatch(jid):
-				authenticationSuccessful = True;
+		authenticationSuccessful = self.__whitelist == None or jid in self.__whitelist
 		if not authenticationSuccessful or jid is None: #jid is None if message comes from server
 			return;
 		else:
 			super( ClusterBot, self ).callback_presence(conn, presence); 
 			
+	@botcmd
+	def broadcast( self, message, users=None):
+		"""Broadcasts the message to a list of users given as jabber ids."""
+		if users == None:
+			users = self.users;
+		for user in users:
+			self.send( user, message)
+	
 	@botcmd
 	def importnewcommands(self, mess, args):
 		"""Loads new command modules from the package clusterbot.commandmodules"""

@@ -17,8 +17,8 @@ load credentials and allowedJIDs from xml File X
 
 """"""
 class EventDrivenShellClusterBot(ShellClusterBot):
-    def __init__(self, jabberID, jabberPW, allowedJIDs, headnodeIP, headnodeUser, headnodePW, debug=False): 
-        super( EventDrivenShellClusterBot, self ).__init__(jabberID, jabberPW, allowedJIDs, headnodeIP, headnodeUser, headnodePW, debug);
+    def __init__(self, jabberID, jabberPW, headnodeIP, headnodeUser, headnodePW, debug=False): 
+        super( EventDrivenShellClusterBot, self ).__init__(jabberID, jabberPW, headnodeIP, headnodeUser, headnodePW, debug);
         self.events = {};  
         self.eventsLock = thread.allocate_lock();
         self.thread_killed = False;
