@@ -19,6 +19,7 @@ class ClusterBot(JabberBot):
 		self.headnodeIP = headnodeIP;
 		self.headnodeUser = headnodeUser;
 		self.headnodePW = headnodePW; 
+		self.__jabberID = jabberID
 		self.__whitelist = None
 		self.__pid = None
 		self._tty = None
@@ -112,16 +113,25 @@ class ClusterBot(JabberBot):
 		:param whitelist: List of Strings with Jabber IDs to allow
 		"""
 		self.__whitelist = whitelist
-		self.__whitelist.append(self.__username)#don't ignore messages from self
+		self.__whitelist.append(self.__jabberID)#don't ignore messages from self
 			
-	def callback_presence(self, conn, presence):
-		"""Overwrites callback_presence to disallow subscription of users not listed in allowedJIDS."""
+	def is_authentication_successful(self, jid):
+		if self.__whitelist == None:
+			return True
+		for id in self.__whitelist:
+			if jid.bareMatch(id):
+				return  True
+				break
+		return False
+	
+	def callback_message(self, conn, presence):
+		"""Overwrites callback_message to disallow subscription of users not listed in allowedJIDS."""
 		jid = presence.getFrom();
-		authenticationSuccessful = self.__whitelist == None or jid in self.__whitelist
+		authenticationSuccessful = self.is_authentication_successful(jid)
 		if not authenticationSuccessful or jid is None: #jid is None if message comes from server
 			return;
 		else:
-			super( ClusterBot, self ).callback_presence(conn, presence); 
+			super( ClusterBot, self ).callback_message(conn, presence); 
 			
 	@botcmd
 	def broadcast( self, message, users=None):
